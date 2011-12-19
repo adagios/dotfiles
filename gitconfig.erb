@@ -1,20 +1,51 @@
 [user]
 	name = <%= print("Your Name: "); STDOUT.flush; STDIN.gets.chomp %>
 	email = <%= print("Your Email: "); STDOUT.flush; STDIN.gets.chomp %>
-[alias]
-	co = checkout
-[color]
-	diff = auto
-	status = auto
-	branch = auto
+
 [core]
 	excludesfile = <%= ENV['HOME'] %>/.gitignore
-	editor = mate -w
-	autocrlf = input
+
+[gui]
+	fontui = -family \"Lucida Grande\" -size 12 -weight normal -slant roman -underline 0 -overstrike 0
+	fontdiff = -family Consolas -size 12 -weight normal -slant roman -underline 0 -overstrike 0
+
+[alias]
+   st = status
+   co = checkout
+   ci = commit
+   br = branch
+
+   di = diff
+
+   sb = show-branch
+	unstage = reset HEAD --
+	last = log -1 HEAD
+
+   lol   = log --graph --decorate --pretty=oneline --abbrev-commit
+   lola  = log --graph --decorate --pretty=oneline --abbrev-commit --all
+   tree  = log --graph --pretty=\"%C(yellow)%h%C(red bold)%d%Creset %s [%Cblue%an%Creset]\" --decorate --color --all
+   peeps = !git log --pretty=format:%aN | sort | uniq -c | sort -rn
+
+[diff]
+    color = auto
+
+[pager]
+    color = true 
+
+[status]
+    color = always
+
 [apply]
-	whitespace = nowarn
-[format]
-	pretty = %C(yellow)%h%Creset %s %C(red)(%an, %cr)%Creset
-[github]
-	user = <%= print("GitHub Username: "); STDOUT.flush; STDIN.gets.chomp %>
-	token = <%= print("GitHub API Token: "); STDOUT.flush; STDIN.gets.chomp %>
+    whitespace = nowarn
+
+[color]
+	grep = true
+	ui = true
+
+[push]
+   default=tracking
+
+[merge]
+   summary = true
+   tool = "vimdiff" 
+
