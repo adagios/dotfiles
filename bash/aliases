@@ -1,15 +1,54 @@
-. ~/.zsh/aliases
+# Aliases
+# #######
+
+# Some example alias instructions
+# If these are enabled they will be used instead of any instructions
+# they may mask.  For example, alias rm='rm -i' will mask the rm
+# application.  To override the alias instruction use a \ before, ie
+# \rm will call the real rm not the alias.
+
+alias cd..='cd ..'
+
+# Interactive operation...
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+# Default to human readable figures
+alias df='df -h'
+alias du='du'
+alias du-sorted='du -cs * .[^\.]* 2>/dev/null | sort -nr | cut -f2 | xargs -IXX  du -hs "XX" 2> /dev/null' 
+
+# Some shortcuts for different directory listings
+alias ls='ls -Gh'                 # classify files in colour
+alias ll='ls -la'                 # long list
+alias la='ls -A'                  # all but . and ..
+
+# git related aliases
+alias gs='git status'
+
+# set default options for some cmds
+alias grep='grep --color'                     # show differences in colour
+alias telnet='telnet -e "^±"'
+alias pgrep='pgrep -fl'
+alias ltop='/usr/bin/top -ocpu -R -F -s 2 -n20'
+alias jawe='java -jar ~/reps/git/login_ldap/bin/ext_lib/skark-lib-1.1.0/contrib/jawe.jar'
+alias ql='qlmanage -p &>/dev/null'
+
+# one-liners
+alias notify_me='echo "It was done master!" | growlnotify -s'
+alias inets='ifconfig |grep "inet [0-9\.]*"'
+alias webshare='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"'
+alias xpdl-clean='sed -i -e "s/xpdl://g"'
+
+rtfm(){ 
+   help $@ || man $@ || w3m -dump http://www.google.com/search?q="$@" | head -40 | tail -30
+}
+
+# Original dotfiles aliases
 
 # changing directory to code project
 function c { cd ~/code/$1; }
-
-# alternative to "rails" command to use templates
-function railsapp {
-  template=$1
-  appname=$2
-  shift 2
-  rails $appname -m http://github.com/ryanb/rails-templates/raw/master/$template.rb $@
-}
 
 # misc
 alias reload='. ~/.bash_profile'
