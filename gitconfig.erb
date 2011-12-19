@@ -15,8 +15,6 @@
    ci = commit
    br = branch
 
-   di = diff
-
    sb = show-branch
 	unstage = reset HEAD --
 	last = log -1 HEAD
@@ -24,7 +22,11 @@
    lol   = log --graph --decorate --pretty=oneline --abbrev-commit
    lola  = log --graph --decorate --pretty=oneline --abbrev-commit --all
    tree  = log --graph --pretty=\"%C(yellow)%h%C(red bold)%d%Creset %s [%Cblue%an%Creset]\" --decorate --color --all
+
    peeps = !git log --pretty=format:%aN | sort | uniq -c | sort -rn
+
+   ribbon = tag --force _ribbon github/master
+   catchup = log --patch --reverse --topo-order _ribbon..github/master
 
 [diff]
     color = auto
