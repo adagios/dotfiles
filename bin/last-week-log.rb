@@ -4,7 +4,7 @@ require 'Date'
 
 DATE_FMT="%b %d %Y"
 
-author=`git config --get user.email`.chomp
+author=ARGV[1]||`git config --get user.email`.chomp
 today= Date.today
 
 n_weeks_before=ARGV[0].to_i||0
@@ -22,13 +22,15 @@ Dir.foreach('.') do |f|
    next if f =~ /\.+/  #skip . and ..
 
    Dir.chdir(f) do |dir|
-      output=`git log --all --color --author="#{author}" --after="#{last_week_start}" --before="#{last_week_end}" --oneline`
+      if Dir.new('.').include?('.git')
+         output=`git log --all --color --author="#{author}" --after="#{last_week_start}" --before="#{last_week_end}" --oneline`
 
-      if output.length>0 then
-         puts f
-         puts "-"*f.length
+         if output.length>0 then
+            puts f
+            puts "-"*f.length
 
-         puts "#{output}\n"
+            puts "#{output}\n"
+         end
       end
 
    end
