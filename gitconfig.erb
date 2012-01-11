@@ -19,6 +19,9 @@
 	unstage = reset HEAD --
 	last = log -1 HEAD
 
+   rels = tag -l Release-* 
+   last-release = !git tag -l Release-* | ruby -pe 'gsub(/Release-(.*)\\.(.*)\\.(.*)/){|m| format(\"%09d %s\",$1.to_i*10000 + $2.to_i*100 + $3.to_i, m)}' | sort | tail -1 |cut -c 11-
+
    lol   = log --graph --decorate --pretty=oneline --abbrev-commit
    lola  = log --graph --decorate --pretty=oneline --abbrev-commit --all
    tree  = log --graph --pretty=\"%C(yellow)%h%C(red bold)%d%Creset %s [%Cblue%an%Creset]\" --decorate --color --all
