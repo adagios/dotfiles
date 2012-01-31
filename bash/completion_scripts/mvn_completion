@@ -19,10 +19,11 @@ _m2_complete()
   goals='clean compile test install deploy'
   goals=$goals _m2_make_goals "assembly" "assembly"
   goals=$goals _m2_make_goals "dependency" "tree"
-  goals=$goals _m2_make_goals "pax" "tree"
+  goals=$goals _m2_make_goals "pax" "run"
 #  goals="$goals -Dmaven.test.skip -Dtest -Dcob.conf"
   cur=`echo $cur | sed 's/\\\\//g'`
   COMPREPLY=($(compgen -W "${goals}" ${cur} | sed 's/\\\\//g') )
 }
 
+COMP_WORDBREAKS=${COMP_WORDBREAKS//:}
 complete -F _m2_complete -o filenames mvn
