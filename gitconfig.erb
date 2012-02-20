@@ -29,7 +29,7 @@
    peeps = !git log --pretty=format:%aN | sort | uniq -c | sort -rn
 
    ribbon = tag --force _ribbon github/master
-   catchup = log --patch --reverse --topo-order _ribbon..github/master
+   catchup = log --reverse --topo-order _ribbon..github/master
 
 [diff]
     color = auto
