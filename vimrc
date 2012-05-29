@@ -57,8 +57,11 @@ set nobackup
 let g:solarized_termcolors=16
 if has("gui_running")
    set background=dark
+   color Tomorrow-Night-Eighties
+else
+   colors default
 endif
-colors solarized
+"colors solarized
 
 "if &t_Co >= 256 || has("gui_running")
 "   colorscheme mustang
