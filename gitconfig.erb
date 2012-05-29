@@ -32,6 +32,9 @@
    ribbon = tag --force _ribbon github/master
    catchup = log --reverse --topo-order _ribbon..github/master
 
+   ulog = log ...@{u}
+   urebase = rebase @{u}
+
 [diff]
     color = auto
 
