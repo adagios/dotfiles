@@ -25,7 +25,7 @@ alias ll='ls -la'                 # long list
 alias la='ls -A'                  # all but . and ..
 
 # git related aliases
-alias gs='git status'
+alias gs='git status -sb'
 
 function git-prune-merged {
    current_branch=$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
