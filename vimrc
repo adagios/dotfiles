@@ -86,6 +86,13 @@ map <C-right> :tabn<CR>
 nnoremap - %
 vnoremap - %
 
+" remap cursor keys
+nmap <Left> <<
+nmap <Right> >>
+
+vmap <Left> <gv
+vmap <Right> >gv
+
 " No Help, please
 nmap <F1> <Esc>
 
