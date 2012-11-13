@@ -59,7 +59,8 @@ if has("gui_running")
    set background=dark
    color Tomorrow-Night-Eighties
 else
-   colors default
+   "colors default
+   color Tomorrow-Night
 endif
 "colors solarized
 
@@ -92,6 +93,9 @@ nmap <Right> >>
 
 vmap <Left> <gv
 vmap <Right> >gv
+
+" select pasted text
+nnoremap gp `[v`]
 
 " No Help, please
 nmap <F1> <Esc>
@@ -168,3 +172,7 @@ nmap <C-a> :Ack<space>
 
 
 command StripWS %s/\s\+$//e
+
+
+" crontab editor fix (http://tim.theenchanter.com/2008/07/crontab-temp-file-must-be-edited-in.html)
+set backupskip=/tmp/*,/private/tmp/*
