@@ -58,3 +58,9 @@
    summary = true
    tool = "vimdiff" 
 
+
+[mergetool "mvimdiff"]
+     cmd = /usr/local/bin/mvimdiff -f "$LOCAL" "$MERGED" "$REMOTE"
+
+[commit]
+	template = "/Users/jnelas/.gitmessage.txt"
