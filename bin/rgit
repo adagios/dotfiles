@@ -8,10 +8,15 @@ Dir.foreach('.') do |f|
 
    Dir.chdir(f) do |dir|
       if Dir.new('.').include?('.git')
-         puts dir
-         puts "-"*dir.size
-         puts `git #{args}`
-         puts "\n"
+
+         output = `git #{args} 2>&1`
+
+         unless output.empty? && $?.success?
+            puts dir
+            puts "-"*dir.size
+            puts output
+            puts "\n"
+         end
       end
 
    end
