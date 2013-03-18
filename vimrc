@@ -1,3 +1,7 @@
+" Pathogen https://github.com/tpope/vim-pathogen
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+execute pathogen#infect()
+
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
@@ -170,6 +174,10 @@ nmap <F6> :bnext<CR>
 """"""""""""""""""""""""
 nmap <C-a> :Ack<space>
 
+""""""""""""""""""""""""
+" tComment
+""""""""""""""""""""""""
+map <leader>c <c-_><c-_>
 
 command StripWS %s/\s\+$//e
 
