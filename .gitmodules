@@ -16,3 +16,6 @@
 [submodule "vim/bundle/ack"]
 	path = vim/bundle/ack
 	url = https://github.com/mileszs/ack.vim
+[submodule "vim/plugin/vim-gitgutter"]
+	path = vim/plugin/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter
