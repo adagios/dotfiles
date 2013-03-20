@@ -70,6 +70,8 @@ rtfm(){
    help $@ || man $@ || w3m -dump http://www.google.com/search?q="$@" | head -40 | tail -30
 }
 
+alias v='head pom.xml | grep "<version>" | sed "s/.*version>\(.*\)<.*/\1/"'
+
 # Original dotfiles aliases
 
 # changing directory to code project
