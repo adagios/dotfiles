@@ -25,6 +25,10 @@ set hlsearch
 "autocmd GUIEnter * set lines=40 columns=124
 "autocmd GUIEnter * set guioptions=egrLtm
 
+set guioptions-=L "disable Left scrollbar on VSplit
+set guioptions-=R "disable Right scrollbar on VSplit
+set guioptions-=r "disable Right scrollbar
+
 "set gfn=Consolas
 "set gfn=Monaco:h10
 set gfn=Menlo\ Regular:h11
@@ -72,6 +76,9 @@ endif
 "   colorscheme mustang
 "endif
 
+" Highlight the current line
+set cursorline
+
 filetype plugin on
 filetype indent on
 
@@ -109,13 +116,13 @@ let g:xml_syntax_folding=1
 au FileType xml setlocal foldmethod=syntax
 
 nmap ,,, viw,,,
-vnoremap ,,, <Esc>:call TagSelection()<CR> 
+vnoremap ,,, <Esc>:call TagSelection()<CR>
 
 function! TagSelection()
     let oldpaste = &paste
     if exists("b:tag")
-    else  
-        let b:tag = "" 
+    else
+        let b:tag = ""
     endif
     let b:tag = input("Tag name? ", b:tag)
     " Turn on paste mode to avoid autoidenting messing with our positions
@@ -141,13 +148,15 @@ let NERDTreeBookmarksFile=expand("$HOME/.vim/NERDTreeBookmarks")
 " Don't display these kinds of files
 let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$' ]
 
-let NERDTreeShowBookmarks=1       " Show the bookmarks table on startup
+let NERDTreeShowBookmarks=0       " Hide the bookmarks table on startup
 let NERDTreeShowFiles=1           " Show hidden files, too
 let NERDTreeShowHidden=1
 let NERDTreeQuitOnOpen=1          " Quit on opening files from the tree
 let NERDTreeHighlightCursorline=1 " Highlight the selected entry in the tree
 let NERDTreeMouseMode=2           " Use a single click to fold/unfold directories
                                   " and a double click to open files
+let g:NERDTreeWinPos = "right"    " Dock the window to the right
+
 nmap <Leader>n :NERDTreeClose<CR>:NERDTreeToggle<CR>
 nmap <Leader>m :NERDTreeClose<CR>:NERDTreeFind<CR>
 nmap <F3> :NERDTreeClose<CR>:NERDTreeFind<CR>
