@@ -71,6 +71,7 @@ rtfm(){
 }
 
 alias v='head pom.xml | grep "<version>" | sed "s/.*version>\(.*\)<.*/\1/"'
+alias vg='head -50 pom.xml | grep "genesis.version" | sed "s/.*version>\(.*\)<.*/\1/"'
 
 # Original dotfiles aliases
 
