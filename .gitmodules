@@ -22,6 +22,3 @@
 [submodule "vim/bundle/syntastic"]
 	path = vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic
-[submodule "vim/bundle/vim-copy-as-rtf"]
-	path = vim/bundle/vim-copy-as-rtf
-	url = https://github.com/aniero/vim-copy-as-rtf
