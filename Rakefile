@@ -5,7 +5,7 @@ desc "install the dot files into user's home directory"
 task :install do
   replace_all = false
   Dir['*'].each do |file|
-    next if %w[Rakefile README.rdoc LICENSE].include? file
+    next if %w[Rakefile README.rdoc LICENSE applescripts].include? file
     
     if File.exist?(File.join(ENV['HOME'], ".#{file.sub('.erb', '')}"))
       if File.identical? file, File.join(ENV['HOME'], ".#{file.sub('.erb', '')}")
@@ -30,6 +30,10 @@ task :install do
       link_file(file)
     end
   end
+
+  #Hack link applescripts into Library/Scripts
+  system %Q{mkdir "$HOME/Library/Scripts" || rm -rf "$HOME/Library/Scripts/*"}
+  system %Q{cp -rf "$PWD/applescripts"/* "$HOME/Library/Scripts/"}
 end
 
 def replace_file(file)
