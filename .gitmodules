@@ -22,3 +22,6 @@
 [submodule "vim/bundle/vim-copy-as-rtf"]
 	path = vim/bundle/vim-copy-as-rtf
 	url = https://github.com/zerowidth/vim-copy-as-rtf.git
+[submodule "vim/bundle/emmet-vim"]
+	path = vim/bundle/emmet-vim
+	url = https://github.com/mattn/emmet-vim
