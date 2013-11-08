@@ -65,6 +65,7 @@ alias notify_me='echo "It was done master!" | growlnotify -s'
 alias inets='ifconfig |grep "inet [0-9\.]*"'
 alias webshare='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"'
 alias xpdl-clean='sed -i -e "s/xpdl://g"'
+alias epoch2localtime="perl -le 'print scalar localtime \$ARGV[0]/1000'"
 
 rtfm(){ 
    help $@ || man $@ || w3m -dump http://www.google.com/search?q="$@" | head -40 | tail -30
