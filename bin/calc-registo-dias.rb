@@ -8,7 +8,7 @@ projMap = {}
 LOCAL_DIR="#{ENV['HOME']}/Library/Application Support/Notational Data"
 DROPBOX_DIR="#{ENV['HOME']}/Dropbox/Application Support/Notational Data"
 
-has_files_in_local_dir = Dir[LOCAL_DIR].length > 2
+has_files_in_local_dir = Dir[LOCAL_DIR + "/*"].length > 2
 workdir = has_files_in_local_dir ? LOCAL_DIR : DROPBOX_DIR
 
 Dir.glob("#{workdir}/log- #{week}*") do |path|
