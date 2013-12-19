@@ -48,5 +48,9 @@ unset RUBYOPT
 
 export MAVEN_OPTS='-Xmx256M'
 
-## RVM
-[[ -s "/Users/jnelas/.rvm/scripts/rvm" ]] && source "/Users/jnelas/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+## rbenv
+# To use Homebrew's directories rather than ~/.rbenv add to your profile:
+export RBENV_ROOT=/usr/local/var/rbenv
+
+#To enable shims and autocompletion add to your profile:
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
