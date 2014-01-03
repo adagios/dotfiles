@@ -42,7 +42,7 @@ export LANG=pt_PT.UTF-8
 
 stty -ixon
 
-export PS1="\`if [ \$? = 0 ]; then echo :\); else echo :\(; fi \` \! [\A] [\u@\h:\W]\\$ "
+export PS1="\A - [\W] "
 
 unset RUBYOPT
 
