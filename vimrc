@@ -64,11 +64,13 @@ set nobackup
 "colors simplewhite
 let g:solarized_termcolors=16
 if has("gui_running")
-   set background=dark
-   color Tomorrow-Night-Eighties
+   " set background=dark
+   " color Tomorrow-Night-Eighties
+   color Tomorrow
 else
    "colors default
-   color Tomorrow-Night
+   " color Tomorrow-Night
+   color Tomorrow
 endif
 "colors solarized
 
