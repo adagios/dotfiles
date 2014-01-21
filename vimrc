@@ -193,3 +193,10 @@ command StripWS %s/\s\+$//e
 
 " crontab editor fix (http://tim.theenchanter.com/2008/07/crontab-temp-file-must-be-edited-in.html)
 set backupskip=/tmp/*,/private/tmp/*
+
+""""""""""""""""""""""""
+" GO
+""""""""""""""""""""""""
+" run fmt after save
+autocmd FileType go autocmd BufWritePre <buffer> Fmt
+autocmd FileType go compiler go
