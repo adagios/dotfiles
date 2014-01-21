@@ -113,6 +113,9 @@ nnoremap gp `[v`]
 " No Help, please
 nmap <F1> <Esc>
 
+" Start with all folds open
+set foldlevelstart=99
+
 "XML stuff
 let g:xml_syntax_folding=1
 au FileType xml setlocal foldmethod=syntax
@@ -202,3 +205,4 @@ set backupskip=/tmp/*,/private/tmp/*
 " run fmt after save
 autocmd FileType go autocmd BufWritePre <buffer> Fmt
 autocmd FileType go compiler go
+autocmd FileType go setlocal foldmethod=syntax
