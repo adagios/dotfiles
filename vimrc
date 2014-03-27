@@ -29,6 +29,10 @@ set guioptions-=L "disable Left scrollbar on VSplit
 set guioptions-=R "disable Right scrollbar on VSplit
 set guioptions-=r "disable Right scrollbar
 
+if &diff
+  set fullscreen
+endif
+
 "set gfn=Consolas
 "set gfn=Monaco:h10
 set gfn=Menlo\ Regular:h11
