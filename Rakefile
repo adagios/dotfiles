@@ -1,6 +1,11 @@
 require 'rake'
 require 'erb'
 
+desc "backup applescripts from this computer"
+task :backup_applescripts do
+  system %Q{cp -rf "$HOME/Library/Scripts"/* "$PWD/applescripts"}
+end
+
 desc "install the dot files into user's home directory"
 task :install do
   replace_all = false
