@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scheme name="jnelas" version="124" parent_scheme="Default">
+  <option name="LINE_SPACING" value="1.0" />
+  <option name="EDITOR_FONT_SIZE" value="12" />
+  <option name="EDITOR_FONT_NAME" value="Monaco" />
+  <colors />
+  <attributes>
+    <option name="JS.PARAMETER">
+      <value>
+        <option name="FOREGROUND" value="0" />
+        <option name="BACKGROUND" value="ffffff" />
+        <option name="EFFECT_TYPE" value="1" />
+      </value>
+    </option>
+    <option name="SCOPE_KEY_All">
+      <value />
+    </option>
+    <option name="SCOPE_KEY_Changed Files">
+      <value />
+    </option>
+    <option name="SCOPE_KEY_Default">
+      <value />
+    </option>
+    <option name="SCOPE_KEY_Non-Project Files">
+      <value />
+    </option>
+    <option name="SCOPE_KEY_Problems">
+      <value />
+    </option>
+    <option name="SCOPE_KEY_Production">
+      <value />
+    </option>
+    <option name="SCOPE_KEY_Project Files">
+      <value />
+    </option>
+    <option name="SCOPE_KEY_Tests">
+      <value />
+    </option>
+    <option name="SCOPE_KEY_VCS + Messaging">
+      <value />
+    </option>
+  </attributes>
+</scheme>
+

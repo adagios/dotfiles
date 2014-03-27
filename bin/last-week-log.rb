@@ -23,13 +23,13 @@ Dir.foreach('.') do |f|
 
    Dir.chdir(f) do |dir|
       if Dir.new('.').include?('.git')
-         output=`git log --all --color --author="#{author}" --after="#{last_week_start}" --before="#{last_week_end}" --oneline`
+         output=`git log --all --color --author="#{author}" --after="#{last_week_start}" --before="#{last_week_end}" --pretty=format:'%Cred%ad %Cgreen%d%Creset%s' --date=short`
 
          if output.length>0 then
             puts f
             puts "-"*f.length
 
-            puts "#{output}\n"
+            puts "#{output}\n\n"
          end
       end
 

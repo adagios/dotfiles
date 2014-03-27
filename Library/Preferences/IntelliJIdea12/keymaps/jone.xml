@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<keymap version="1" name="jone" parent="Mac OS X">
+  <action id="DatabaseView.PropertiesAction">
+    <keyboard-shortcut first-keystroke="ENTER" />
+  </action>
+  <action id="EditorLineEnd">
+    <keyboard-shortcut first-keystroke="END" />
+    <keyboard-shortcut first-keystroke="meta RIGHT" />
+    <keyboard-shortcut first-keystroke="control E" />
+  </action>
+  <action id="EditorLineStart">
+    <keyboard-shortcut first-keystroke="HOME" />
+    <keyboard-shortcut first-keystroke="meta LEFT" />
+    <keyboard-shortcut first-keystroke="control A" />
+  </action>
+  <action id="MoveEditorToOppositeTabGroup">
+    <keyboard-shortcut first-keystroke="F16" />
+  </action>
+  <action id="NextSplitter">
+    <keyboard-shortcut first-keystroke="alt TAB" />
+    <keyboard-shortcut first-keystroke="control TAB" />
+  </action>
+  <action id="PrevSplitter">
+    <keyboard-shortcut first-keystroke="shift alt TAB" />
+    <keyboard-shortcut first-keystroke="shift control TAB" />
+  </action>
+  <action id="Rerun">
+    <keyboard-shortcut first-keystroke="control F5" />
+    <keyboard-shortcut first-keystroke="meta F5" />
+  </action>
+  <action id="Resume">
+    <keyboard-shortcut first-keystroke="F9" />
+    <keyboard-shortcut first-keystroke="control F9" />
+  </action>
+  <action id="Run">
+    <keyboard-shortcut first-keystroke="shift F10" />
+    <keyboard-shortcut first-keystroke="meta F10" />
+  </action>
+  <action id="ShowBookmarks">
+    <keyboard-shortcut first-keystroke="shift F11" />
+    <keyboard-shortcut first-keystroke="alt F11" />
+  </action>
+  <action id="ShowProjectStructureSettings">
+    <keyboard-shortcut first-keystroke="meta SEMICOLON" />
+    <keyboard-shortcut first-keystroke="shift meta COMMA" />
+  </action>
+  <action id="SplitVertically">
+    <keyboard-shortcut first-keystroke="meta F16" />
+  </action>
+  <action id="SwitchApply">
+    <keyboard-shortcut first-keystroke="control alt ENTER" />
+  </action>
+  <action id="SwitchDown">
+    <keyboard-shortcut first-keystroke="control alt DOWN" />
+  </action>
+  <action id="SwitchLeft">
+    <keyboard-shortcut first-keystroke="control alt LEFT" />
+  </action>
+  <action id="SwitchRight">
+    <keyboard-shortcut first-keystroke="control alt RIGHT" />
+  </action>
+  <action id="SwitchUp">
+    <keyboard-shortcut first-keystroke="control alt UP" />
+  </action>
+  <action id="Switcher">
+    <keyboard-shortcut first-keystroke="alt TAB" />
+    <keyboard-shortcut first-keystroke="shift alt TAB" />
+  </action>
+  <action id="Unscramble">
+    <keyboard-shortcut first-keystroke="F15" />
+  </action>
+  <action id="javaee.UpdateRunningApplication" />
+</keymap>
+
