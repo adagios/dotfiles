@@ -53,7 +53,7 @@ end
 
 def replace_file(file, prefix)
   system %Q{rm -rf "$HOME/#{prefix}#{file.sub('.erb', '')}"}
-  link_file(file)
+  link_file(file, prefix)
 end
 
 def link_file(file, prefix)
