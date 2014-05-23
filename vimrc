@@ -216,6 +216,7 @@ autocmd FileType go setlocal foldmethod=syntax
 " Shell
 """"""""""""""""""""""""
 command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
+vnoremap <C-r> "ry:Shell <C-r>r
 function! s:RunShellCommand(cmdline)
   echo a:cmdline
   let expanded_cmdline = a:cmdline
