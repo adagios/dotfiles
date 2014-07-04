@@ -236,3 +236,8 @@ function! s:RunShellCommand(cmdline)
   setlocal nomodifiable
   1
 endfunction
+
+""""""""""""""""""""""""
+" airline
+""""""""""""""""""""""""
+let g:airline#extensions#tabline#enabled = 1
