@@ -198,6 +198,7 @@ nmap <C-a> :Ack<space>
 map <leader>c <c-_><c-_>
 
 command StripWS %s/\s\+$//e
+command StripPivotal %s/\[#[^\]]*\]/[REDACTED]/e
 
 
 " crontab editor fix (http://tim.theenchanter.com/2008/07/crontab-temp-file-must-be-edited-in.html)
