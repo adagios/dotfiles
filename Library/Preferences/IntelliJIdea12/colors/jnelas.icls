@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scheme name="jnelas" version="124" parent_scheme="Default">
   <option name="LINE_SPACING" value="1.0" />
-  <option name="EDITOR_FONT_SIZE" value="12" />
-  <option name="EDITOR_FONT_NAME" value="Monaco" />
+  <font>
+    <option name="EDITOR_FONT_NAME" value="Monaco" />
+    <option name="EDITOR_FONT_SIZE" value="12" />
+  </font>
+  <font>
+    <option name="EDITOR_FONT_NAME" value="Menlo" />
+    <option name="EDITOR_FONT_SIZE" value="12" />
+  </font>
+  <font>
+    <option name="EDITOR_FONT_NAME" value="Inconsolata-dz" />
+    <option name="EDITOR_FONT_SIZE" value="12" />
+  </font>
+  <option name="CONSOLE_FONT_NAME" value="Monaco" />
   <colors />
   <attributes>
     <option name="JS.PARAMETER">
@@ -10,6 +21,11 @@
         <option name="FOREGROUND" value="0" />
         <option name="BACKGROUND" value="ffffff" />
         <option name="EFFECT_TYPE" value="1" />
+      </value>
+    </option>
+    <option name="PARAMETER_ATTRIBUTES">
+      <value>
+        <option name="FOREGROUND" value="9e2c7c" />
       </value>
     </option>
     <option name="SCOPE_KEY_All">
