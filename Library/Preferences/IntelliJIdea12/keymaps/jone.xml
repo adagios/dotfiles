@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <keymap version="1" name="jone" parent="Mac OS X">
+  <action id="CloseAllEditorsButActive">
+    <keyboard-shortcut first-keystroke="meta alt F4" />
+  </action>
   <action id="DatabaseView.PropertiesAction">
     <keyboard-shortcut first-keystroke="ENTER" />
   </action>
@@ -13,6 +16,7 @@
     <keyboard-shortcut first-keystroke="meta LEFT" />
     <keyboard-shortcut first-keystroke="control A" />
   </action>
+  <action id="Images.EditExternaly" />
   <action id="MoveEditorToOppositeTabGroup">
     <keyboard-shortcut first-keystroke="F16" />
   </action>
@@ -68,6 +72,14 @@
   </action>
   <action id="Unscramble">
     <keyboard-shortcut first-keystroke="F15" />
+  </action>
+  <action id="VcsShowNextChangeMarker">
+    <keyboard-shortcut first-keystroke="shift control alt DOWN" />
+    <keyboard-shortcut first-keystroke="control meta alt DOWN" />
+  </action>
+  <action id="VcsShowPrevChangeMarker">
+    <keyboard-shortcut first-keystroke="shift control alt UP" />
+    <keyboard-shortcut first-keystroke="control meta alt UP" />
   </action>
   <action id="javaee.UpdateRunningApplication" />
 </keymap>
