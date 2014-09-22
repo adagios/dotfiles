@@ -22,7 +22,7 @@ endif
 " Switch on search pattern highlighting.
 set hlsearch
 
-"autocmd GUIEnter * set lines=40 columns=124
+autocmd GUIEnter * set lines=70 columns=124
 "autocmd GUIEnter * set guioptions=egrLtm
 
 set guioptions-=L "disable Left scrollbar on VSplit
