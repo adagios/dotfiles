@@ -242,3 +242,13 @@ endfunction
 " airline
 """"""""""""""""""""""""
 let g:airline#extensions#tabline#enabled = 1
+
+
+""""""""""""""""""""""""
+" unite
+""""""""""""""""""""""""
+let g:unite_source_history_yank_enable = 1
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+nnoremap <C-t> :<C-u>Unite -start-insert file_mru file_rec/async:!<cr>
+nnoremap <C-h> :<C-u>Unite history/yank<cr>
+nnoremap <C-b> :<C-u>Unite buffer<cr>
