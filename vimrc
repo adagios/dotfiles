@@ -39,7 +39,7 @@ set gfn=Menlo\ Regular:h11
 
 map <D-'> :maca _cycleWindows:<CR>
 
-map <C-f> <C-]>
+map <C-g> <C-]>
 map <S-C-Tab> <C-W>W
 
 " press / to search for highlighted expression in V mode
@@ -252,3 +252,16 @@ call unite#filters#matcher_default#use(['matcher_fuzzy'])
 nnoremap <C-t> :<C-u>Unite -start-insert file_mru file_rec/async:!<cr>
 nnoremap <C-h> :<C-u>Unite history/yank<cr>
 nnoremap <C-b> :<C-u>Unite buffer<cr>
+
+
+""""""""""""""""""""""""
+" js-beautify
+""""""""""""""""""""""""
+autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
+autocmd FileType javascript vnoremap <buffer>  <c-f> :call RangeJsBeautify()<cr>
+" for html
+autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
+autocmd FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
+" for css or scss
+autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
+autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
