@@ -1,3 +1,4 @@
+# vim: filetype=sh
 # Aliases
 # #######
 
@@ -84,3 +85,9 @@ function c { cd ~/code/$1; }
 alias reload='. ~/.bash_profile'
 
 alias vbox-network-restart='VBoxManage guestcontrol $(cat .vagrant/machines/*/virtualbox/id) exec --image /etc/init.d/network --username root --password vagrant -- restart'
+
+function rtmux {
+   server=$1
+   shift
+   autossh -M 0 -t $server "$@" "tmux -qu has && tmux -qu attach || tmux -qu new"
+}
