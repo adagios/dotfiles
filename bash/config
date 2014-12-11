@@ -16,7 +16,8 @@ export HISTIGNORE="[   ]*:&:bg:fg:exit:ls:ps:ll:gs:cd:cd ..:pwd"
 
 # Whenever displaying the prompt, write the previous line to disk
 alias hfix='history -n && history | sort -k2 -k1nr | uniq -f1 | sort -n | cut -c8- > ~/.tmp$$ && history -c && history -r ~/.tmp$$ && history -w && \rm -f ~/.tmp$$'
-export PROMPT_COMMAND="hfix;"
+alias hfix2='history -a && nl ~/.bash_history | sort -k2 -k1nr | uniq -f1 | sort -n | cut -f2 > ~/.tmp$$ && \cp -f ~/.tmp$$ ~/.bash_history && \rm -f ~/.tmp$$'
+export PROMPT_COMMAND="hfix2;"
 
 HISTFILESIZE=10000
 HISTSIZE=10000
