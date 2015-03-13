@@ -41,6 +41,12 @@
    urebase = rebase @{u}
    udiff = diff ...@{u}
 
+   wip-save=!git add . && git commit -m WIP
+   wip-resume=reset HEAD~1
+   wip-clear=reset --hard HEAD~1
+
+   safe-push = !mvn clean test && git push
+
 [diff]
     color = auto
 
