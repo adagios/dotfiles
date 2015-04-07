@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+
+require "thread"
+
+threads = []
+lock = Mutex.new
+
+args = ARGV.join(" ")
+
+Dir.foreach('.') do |f|
+   next unless File.directory? f #only dirs
+   next if f =~ /\.+/  #skip . and ..
+
+   if Dir.new(f).include?('.git')
+      threads << Thread.new do
+
+         output = `cd #{f} && git #{args} 2>&1`
+
+         unless output.empty? && $?.success?
+            lock.synchronize do
+               puts f
+               puts "-"*f.size
+               puts output
+               puts "\n"
+            end
+         end
+      end
+   end
+
+end
+
+threads.map(&:join)
