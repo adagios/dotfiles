@@ -1,2 +1,4 @@
 # enable auto-complete of symbolic links to include a "/"
 set mark-symlinked-directories on
+
+"\e\C-m": '\C-a "$(\C-e)"\C-a'
