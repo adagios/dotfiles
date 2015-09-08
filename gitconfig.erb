@@ -38,6 +38,7 @@
    catchup = log --reverse --topo-order _ribbon..github/master
 
    ulog = log ...@{u}
+   ulol   = log --graph --decorate --pretty=oneline --abbrev-commit ...@{u}
    urebase = rebase @{u}
    udiff = diff ...@{u}
 
