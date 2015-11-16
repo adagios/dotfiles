@@ -92,5 +92,5 @@ alias vbox-network-restart='VBoxManage guestcontrol $(cat .vagrant/machines/*/vi
 function rtmux {
    server=$1
    shift
-   autossh -M 0 -t $server "$@" "tmux -qu has && tmux -qu attach || tmux -qu new"
+   autossh -M 0 -t $server "$@" "tmux -qu has -t jone && tmux -qu attach -t jone || tmux -qu new -s jone"
 }
