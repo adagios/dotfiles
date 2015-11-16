@@ -76,6 +76,9 @@ rtfm(){
 alias v='head pom.xml | grep "<version>" | sed "s/.*version>\(.*\)<.*/\1/"'
 alias vg='head -50 pom.xml | grep "genesis.version" | sed "s/.*version>\(.*\)<.*/\1/"'
 
+alias j7='export JAVA_HOME=$(/usr/libexec/java_home -v 1.7) && java -version'
+alias j8='export JAVA_HOME=$(/usr/libexec/java_home -v 1.8) && java -version'
+
 # Original dotfiles aliases
 
 # changing directory to code project
