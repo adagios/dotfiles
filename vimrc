@@ -31,6 +31,9 @@ set guioptions-=r "disable Right scrollbar
 
 if &diff
   set fullscreen
+  autocmd VimResized * wincmd =
+  map <leader>1 :diffget LOCAL<CR>
+  map <leader>3 :diffget REMOTE<CR>
 endif
 
 "set gfn=Consolas
