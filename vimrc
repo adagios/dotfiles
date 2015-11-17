@@ -194,6 +194,9 @@ nmap <F6> :bnext<CR>
 " Ack
 """"""""""""""""""""""""
 nmap <C-a> :Ack<space>
+if executable('ag')
+   let g:ackprg = 'ag --vimgrep'
+endif
 
 """"""""""""""""""""""""
 " tComment
