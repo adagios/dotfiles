@@ -30,7 +30,10 @@
 	url = git://github.com/jnwhiteh/vim-golang.git
 [submodule "vim/bundle/vim-airline"]
 	path = vim/bundle/vim-airline
-	url = https://github.com/bling/vim-airline
+	url = https://github.com/vim-airline/vim-airline
+[submodule "vim/bundle/vim-airline-themes"]
+	path = vim/bundle/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes
 [submodule "vim/bundle/unite"]
 	path = vim/bundle/unite
 	url = https://github.com/Shougo/unite.vim
