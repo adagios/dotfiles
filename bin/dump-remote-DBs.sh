@@ -5,12 +5,12 @@ BDs=$2
 DEST=$3
 
 
-IFS=: read -a arrBDs <<< "$BDs"
+IFS=: read -a -r arrBDs <<< "$BDs"
 
 echo "Backing up BDs [${arrBDs[@]}] to $DEST"
 
-for bd in ${arrBDs[@]}
+for bd in "${arrBDs[@]}"
 do
    echo "backing up $bd"
-   ssh -C $HOST mysqldump -u root --hex-blob $bd | gzip > $DEST/$bd.sql.gz
+   ssh -C "$HOST" mysqldump -u root --hex-blob "$bd" | gzip > "$DEST/$bd.sql.gz"
 done
