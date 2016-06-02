@@ -72,7 +72,7 @@ set autoread
 "colors vividchalk
 "colors ir_black
 "colors simplewhite
-let g:solarized_termcolors=16
+"let g:solarized_termcolors=16
 if has("gui_running")
    " set background=dark
    " color Tomorrow-Night-Eighties
