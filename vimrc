@@ -63,6 +63,9 @@ nmap <silent> <leader>s :set nolist!<CR>
 
 set nobackup
 
+" autoload files that have changed outside of vim (we can always undo changes)
+set autoread
+
 "colors rainbow_neon
 "colors tibet
 "colors ps_color
