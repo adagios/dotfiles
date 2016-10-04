@@ -1,7 +1,7 @@
 export PATH="~/bin:~/.bin:/usr/local/bin:/usr/local/sbin:/usr/local/git/bin:/usr/local/share/npm/bin:/usr/local/mysql/bin:$PATH"
 export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
 
-export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 export CATALINA_HOME=/usr/local/tomcat
 
 ## Erlang
