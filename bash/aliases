@@ -94,3 +94,6 @@ rtmux() {
    shift
    autossh -M 0 -t "$server" "$@" "tmux -qu has -t jone && tmux -qu attach -t jone || tmux -qu new -s jone"
 }
+
+ts2date() { date -r "$1"; }
+
