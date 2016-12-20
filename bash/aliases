@@ -29,7 +29,7 @@ alias la='ls -A'                  # all but . and ..
 alias gs='git status -sb'
 alias gr='cd "$(git rev-parse --show-toplevel)"'
 
-function git-prune-merged {
+git-prune-merged() {
    current_branch=$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
    if [ "$current_branch" != "master" ]; then
       echo "WARNING: You are on branch $current_branch, NOT master."
@@ -82,14 +82,14 @@ alias j8='export JAVA_HOME=$(/usr/libexec/java_home -v 1.8) && java -version'
 # Original dotfiles aliases
 
 # changing directory to code project
-function c { cd ~/code/$1; }
+c() { cd ~/code/$1; }
 
 # misc
 alias reload='. ~/.bash_profile'
 
 alias vbox-network-restart='VBoxManage guestcontrol $(cat .vagrant/machines/*/virtualbox/id) --username vagrant --password vagrant run -- /usr/bin/sudo /etc/init.d/network restart'
 
-function rtmux {
+rtmux() {
    server=$1
    shift
    autossh -M 0 -t $server "$@" "tmux -qu has -t jone && tmux -qu attach -t jone || tmux -qu new -s jone"
