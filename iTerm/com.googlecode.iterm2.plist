@@ -6344,6 +6344,8 @@
 	<integer>0</integer>
 	<key>HotkeyCode</key>
 	<integer>0</integer>
+	<key>HotkeyMigratedFromSingleToMulti</key>
+	<true/>
 	<key>HotkeyModifiers</key>
 	<integer>0</integer>
 	<key>IRMemory</key>
@@ -6397,11 +6399,11 @@
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>1692 245 629 257 0 0 2560 1417 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>550 933 606 456 0 0 2560 1417 </string>
+	<string>550 916 606 456 0 0 2560 1417 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>970 769 620 392 0 0 2560 1417 </string>
+	<string>970 597 620 622 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>231 145 1249 928 0 0 2560 1417 </string>
+	<string>43 471 850 877 0 0 2560 1417 </string>
 	<key>NeverWarnAboutShortLivedSessions_5A18C6DC-0CEE-4684-86EB-AE7448320A2B</key>
 	<true/>
 	<key>New Bookmarks</key>
@@ -10156,11 +10158,19 @@
 	<true/>
 	<key>NoSyncDoNotWarnBeforeMultilinePaste_selection</key>
 	<integer>0</integer>
+	<key>NoSyncHaveWarnedAboutIncompatibleSoftware</key>
+	<true/>
 	<key>NoSyncInstallationId</key>
 	<string>F42E528A-73C0-41D3-B7EF-67625332BC17</string>
 	<key>NoSyncLastTipTime</key>
 	<real>465209984.719329</real>
 	<key>NoSyncNeverRemindPrefsChangesCopy</key>
+	<true/>
+	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
+	<true/>
+	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
+	<integer>0</integer>
+	<key>NoSyncSuppressAnnyoingBellOffer</key>
 	<true/>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
 	<real>465930739.24461597</real>
@@ -10252,7 +10262,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-06-01T16:32:00Z</date>
+	<date>2017-06-21T06:59:43Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Show Toolbelt</key>
@@ -10305,6 +10315,10 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.0.0</string>
+	<string>3.1.beta.4</string>
+	<key>kCPKSelectionViewPreferredModeKey</key>
+	<integer>0</integer>
+	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
+	<false/>
 </dict>
 </plist>
