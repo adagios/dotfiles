@@ -81,9 +81,6 @@ alias j8='export JAVA_HOME=$(/usr/libexec/java_home -v 1.8) && java -version'
 
 # Original dotfiles aliases
 
-# changing directory to code project
-c() { cd ~/code/$1; }
-
 # misc
 alias reload='. ~/.bash_profile'
 
