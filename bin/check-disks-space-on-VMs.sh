@@ -1,19 +1,11 @@
 #!/bin/bash
 
-SERVERS=(df)
-
-# linodes prod
-SERVERS+=(bpopular galp galpdistribuicao multipla sinergi vodafone)
-# linodes qual
-SERVERS+=(diusframi diusframi-es galp-qual sinergi-qual)
-
-# onprem prod
-SERVERS+=(prod2.lidl dius.es-prod)
+. "$(dirname $0)/VMs.rc"
 
 for server in "${SERVERS[@]}"; do
    echo ""
    echo "$server"
    echo "==============="
-   ssh root@"$server" "df -h|grep -v tmpfs"
+   ssh root@"$server" "df -lh|grep -v tmpfs | grep -v -F \"/boot\" | grep -v -F udev"
    echo ""
 done

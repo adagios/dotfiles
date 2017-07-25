@@ -1,0 +1,12 @@
+SERVERS=(df)
+
+# linodes prod
+SERVERS+=(bpopular galp galpdistribuicao multipla sinergi-qual cgi lidlmkt ofimedia)
+# linodes qual
+SERVERS+=(diusframi diusframi-es galp-qual sinergi)
+
+# OVH
+SERVERS+=(hsb01.cultofbits.com)
+
+# onprem prod
+SERVERS+=(prod2.lidl dius.es-prod alfcobfe01 alfcobfe02 alfcobdb01)
