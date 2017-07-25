@@ -48,6 +48,9 @@ export PS1="\A - [\W] "
 
 unset RUBYOPT
 
+# for mvnvm
+export DEFAULT_MVN_VERSION=3.5.0
+
 export MAVEN_OPTS='-Xmx512M -XX:+TieredCompilation -XX:TieredStopAtLevel=1'
 
 ## rbenv
