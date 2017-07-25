@@ -1,6 +1,7 @@
 source ~/.bash/completion_scripts/git_completion
 complete -o bashdefault -o default -o nospace -F _git rgit
 complete -o bashdefault -o default -o nospace -F _ssh rtmux
+complete -o bashdefault -o default -o nospace -F _ssh rscreen
 complete -C ~/.bash/completion_scripts/rake_completion -o default rake
 complete -C ~/.bash/completion_scripts/project_completion -o default c
 complete -C ~/.bash/completion_scripts/capistrano_completion -o default cap

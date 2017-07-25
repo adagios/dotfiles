@@ -91,6 +91,11 @@ rtmux() {
    shift
    autossh -M 0 -t "$server" "$@" "tmux -qu has -t jone && tmux -qu attach -t jone || tmux -qu new -s jone"
 }
+rscreen() {
+   server=$1
+   shift
+   autossh -M 0 -t "$server" "$@" "screen -a -A -O -U -d -R"
+}
 
 ts2date() { date -r "$1"; }
 
