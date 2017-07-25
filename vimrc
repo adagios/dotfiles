@@ -103,9 +103,21 @@ set fileencodings=ucs-bom,utf-8,latin1
 :command Wq wq
 :command WQ wq
 
-map <C-t> :tabnew<CR>
-map <C-left> :tabp<CR>
-map <C-right> :tabn<CR>
+" map <C-t> :tabnew<CR>
+" map <C-left> :tabp<CR>
+" map <C-right> :tabn<CR>
+
+""""""""""
+" splits "
+""""""""""
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+set splitbelow
+set splitright
+
 
 nnoremap - %
 vnoremap - %
@@ -260,7 +272,7 @@ let g:unite_source_history_yank_enable = 1
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 nnoremap <C-t> :<C-u>Unite -start-insert file file_rec/async:! file_mru<cr>
-nnoremap <C-h> :<C-u>Unite history/yank<cr>
+" nnoremap <C-h> :<C-u>Unite history/yank<cr>
 nnoremap <C-b> :<C-u>Unite buffer<cr>
 
 
