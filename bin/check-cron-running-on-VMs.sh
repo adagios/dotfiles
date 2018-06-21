@@ -8,6 +8,6 @@ for server in "${SERVERS[@]}"; do
       printf  "%-30s : SKIPPED\n" $server
 
    else
-      ssh "root@$server" -C "printf  \"%-30s : \" $server; (find /usr/share/nginx/html/cob-current-health.txt -mmin -10 -printf \"%CY-%Cm-%Cd %CH:%CM\\n\") || echo \"cob-current-health.txt older than 10m (CRON STOPPED??)\""
+      ssh "root@$server" -C "printf  \"%-35s : \" $server; (find /usr/share/nginx/html/cob-current-health.txt -mmin -10 -printf \"%CY-%Cm-%Cd %CH:%CM\\n\") || echo \"cob-current-health.txt older than 10m (CRON STOPPED??)\""
    fi
 done

@@ -277,6 +277,11 @@ nnoremap <C-b> :<C-u>Unite buffer<cr>
 
 
 """"""""""""""""""""""""
+" syntastic
+""""""""""""""""""""""""
+"let g:syntastic_java_checkers = []
+
+""""""""""""""""""""""""
 " js-beautify
 """"""""""""""""""""""""
 autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>

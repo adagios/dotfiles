@@ -3,9 +3,11 @@
 . "$(dirname $0)/VMs.rc"
 
 for server in "${SERVERS[@]}"; do
-   echo ""
+   [ -t 1 ] || echo '```'
    echo "$server"
    echo "==============="
    ssh root@"$server" "df -lh|grep -v tmpfs | grep -v -F \"/boot\" | grep -v -F udev"
-   echo ""
+   [ -t 1 ] || echo '```'
+   [ -t 1 ] && echo ""
+   printf '\0' #divider when pasting to slack
 done
