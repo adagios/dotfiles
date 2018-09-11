@@ -89,7 +89,8 @@ endif
 "endif
 
 " Highlight the current line
-set cursorline
+" jone 2017-10-04: desliguei porque tornava o scroll lento no iterm2
+" set cursorline
 
 filetype plugin on
 filetype indent on
@@ -269,6 +270,7 @@ let g:airline#extensions#tabline#enabled = 1
 " unite
 """"""""""""""""""""""""
 let g:unite_source_history_yank_enable = 1
+let g:unite_source_rec_async_command = ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 nnoremap <C-t> :<C-u>Unite -start-insert file file_rec/async:! file_mru<cr>
@@ -292,3 +294,10 @@ autocmd FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
 " for css or scss
 autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
 autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
+
+""""""""""""""""""""""""
+" to auto-complete files relative to current file
+" C-x C-f
+""""""""""""""""""""""""
+autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
+autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
