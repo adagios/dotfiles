@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Slack user token (JF)
-TOKEN="xoxp-2613752663-2617774859-2851354123-58704a"
+TOKEN="$(cat ~/.slack)"
 
 #The Slack channel name
 CHANNEL="@adagios"
