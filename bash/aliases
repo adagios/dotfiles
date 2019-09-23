@@ -101,3 +101,18 @@ rscreen() {
 
 ts2date() { date -r "$1"; }
 
+# l(ist)ips Get local and WAN IP adddresses
+# $ lips
+#    Local IP: 10.0.1.4
+# External IP: 41.32.11.102
+lips() {
+    local ip=$(ifconfig | grep "inet " | grep -v 127.0.0.1 | awk '{print $2}')
+    local locip extip
+
+    [ "$ip" != "" ] && locip=$(echo "$ip" | tr "\n" " ") || locip="inactive"
+
+    ip=$(curl -sS ifconfig.me)
+    [ "$ip" != "" ] && extip=$ip || extip="inactive"
+
+    printf '%11s: %s\n%11s: %s\n' "Local IPs" "$locip" "External IP" $extip
+}
