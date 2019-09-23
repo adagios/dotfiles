@@ -116,3 +116,13 @@ lips() {
 
     printf '%11s: %s\n%11s: %s\n' "Local IPs" "$locip" "External IP" $extip
 }
+
+alert(){
+   msg=${1:-"Something happened"}
+   title=${2:-"Alert"}
+   sound=${3:-"Purr"}
+   display="display notification \"$msg\""
+   with_title="with title \"$title\""
+   and_sound="sound name \"$sound\""
+   /usr/bin/osascript -e "$display $with_title $and_sound"
+}
