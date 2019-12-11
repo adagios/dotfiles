@@ -2,3 +2,7 @@
 set mark-symlinked-directories on
 
 "\e\C-m": '\C-a "$(\C-e)"\C-a'
+
+# simple history search with arrow up / down
+"\e[A": history-search-backward
+"\e[B": history-search-forward
