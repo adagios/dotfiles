@@ -9,6 +9,7 @@ set nocompatible
 set ch=2		" Make command line two lines high
 
 set mousehide		" Hide the mouse when typing text
+set mouse=n       " mouse funciona em modo normal
 
 " Make shift-insert work like in Xterm
 map <S-Insert> <MiddleMouse>
@@ -29,6 +30,7 @@ set guioptions-=L "disable Left scrollbar on VSplit
 set guioptions-=R "disable Right scrollbar on VSplit
 set guioptions-=r "disable Right scrollbar
 
+set diffopt+=indent-heuristic "https://vimways.org/2018/the-power-of-diff/
 if &diff
   set fullscreen
   autocmd VimResized * wincmd =
@@ -66,6 +68,7 @@ set nobackup
 " autoload files that have changed outside of vim (we can always undo changes)
 set autoread
 
+set termguicolors
 "colors rainbow_neon
 "colors tibet
 "colors ps_color
@@ -77,6 +80,9 @@ if has("gui_running")
    " set background=dark
    " color Tomorrow-Night-Eighties
    color Tomorrow
+   if &diff
+      colorscheme PaperColor
+   endif
 else
    "colors default
    " color Tomorrow-Night
@@ -132,6 +138,9 @@ vmap <Right> >gv
 
 " select pasted text
 nnoremap gp `[v`]
+
+" copy to system clipboard
+vmap <C-c> "+y
 
 " No Help, please
 nmap <F1> <Esc>
@@ -224,7 +233,8 @@ command StripPivotal %s/\[#[^\]]*\]/[REDACTED]/e
 
 
 " crontab editor fix (http://tim.theenchanter.com/2008/07/crontab-temp-file-must-be-edited-in.html)
-set backupskip=/tmp/*,/private/tmp/*
+set backupskip=/tmp/*,/private/tmp/*,tmp/*,/private/var/at/tmp/*
+autocmd FileType crontab setlocal nowritebackup
 
 """"""""""""""""""""""""
 " GO
@@ -272,10 +282,13 @@ let g:airline#extensions#tabline#enabled = 1
 let g:unite_source_history_yank_enable = 1
 let g:unite_source_rec_async_command = ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_rank'])
+call unite#filters#sorter_default#use(['sorter_selecta'])
+call unite#custom#profile('files', 'filters', 'sorter_rank')
+call unite#custom#source('file,file/new,buffer,file_rec','matchers', 'matcher_fuzzy')
+call unite#custom#source('file,file/new,buffer,file_rec','sorters', 'sorter_selecta')
 nnoremap <C-t> :<C-u>Unite -start-insert file file_rec/async:! file_mru<cr>
 " nnoremap <C-h> :<C-u>Unite history/yank<cr>
-nnoremap <C-b> :<C-u>Unite buffer<cr>
+nnoremap <C-b> :<C-u>Unite -start-insert buffer bookmark<cr>
 
 
 """"""""""""""""""""""""
@@ -301,3 +314,8 @@ autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
 """"""""""""""""""""""""
 autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
 autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
+
+set path=.,,src/,test/
+
+" for a faster GitGutter update
+set updatetime=100
