@@ -1,0 +1,15 @@
+#!/bin/bash
+
+SERVER=$1
+IMPORTER=${PWD##*/}
+
+ORIGIN="$SERVER:/opt/recordm-importer/$IMPORTER/"
+
+
+echo "Downloading from $ORIGIN"
+
+for glob in '*.groovy' '*.js' '*.sql' '*.properties'; do
+   # queremos globbing
+   # shellcheck disable=SC2086
+   scp -o 'ControlPersist 10s' "${ORIGIN}"$glob . 2> >(grep -v 'No such file or directory')
+done

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+SERVER=$1
+IMPORTER=${PWD##*/}
+
+DESTINATION="$SERVER:/opt/recordm-importer/$IMPORTER/"
+
+
+echo "Uploading to $DESTINATION"
+
+for glob in '*.groovy' '*.js' '*.sql' '*.properties'; do
+   # queremos globbing
+   # shellcheck disable=SC2086
+   if test -n "$(find . -maxdepth 1 -name "$glob" -print -quit)"; then
+      scp -o 'ControlPersist 10s' -- $glob "$DESTINATION"
+   fi
+done
