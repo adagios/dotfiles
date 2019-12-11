@@ -17,7 +17,12 @@ export HISTIGNORE="[   ]*:&:bg:fg:exit:ls:ps:ll:gs:cd:cd ..:pwd"
 # Whenever displaying the prompt, write the previous line to disk
 alias hfix='history -n && history | sort -k2 -k1nr | uniq -f1 | sort -n | cut -c8- > ~/.tmp$$ && history -c && history -r ~/.tmp$$ && history -w && \rm -f ~/.tmp$$'
 alias hfix2='history -a && nl ~/.bash_history | sort -k2 -k1nr | uniq -f1 | sort -n | cut -f2 > ~/.tmp$$ && \cp -f ~/.tmp$$ ~/.bash_history && \rm -f ~/.tmp$$'
-export PROMPT_COMMAND="hfix2;"
+
+# customize git display on PROMPT
+export GIT_PS1_SHOWCOLORHINTS=true
+export GIT_PS1_SHOWDIRTYSTATE=1
+
+export PROMPT_COMMAND='hfix2; __git_ps1 "\A - [\W" "] "'
 
 HISTFILESIZE=10000
 HISTSIZE=10000
@@ -43,8 +48,6 @@ export LC_ALL=pt_PT.UTF-8
 export LANG=pt_PT.UTF-8
 
 stty -ixon
-
-export PS1="\A - [\W] "
 
 unset RUBYOPT
 
