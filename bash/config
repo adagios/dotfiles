@@ -52,7 +52,7 @@ stty -ixon
 unset RUBYOPT
 
 # for mvnvm
-export DEFAULT_MVN_VERSION=3.5.0
+export DEFAULT_MVN_VERSION=3.6.3
 
 export MAVEN_OPTS='-Xmx512M -XX:+TieredCompilation -XX:TieredStopAtLevel=1'
 
