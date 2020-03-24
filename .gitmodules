@@ -49,3 +49,6 @@
 [submodule "vim/bundle/vim-vue"]
 	path = vim/bundle/vim-vue
 	url = https://github.com/posva/vim-vue.git
+[submodule "vim/pack/git-plugins/start/ListToggle"]
+	path = vim/pack/git-plugins/start/ListToggle
+	url = https://github.com/Valloric/ListToggle.git
