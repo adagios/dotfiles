@@ -100,6 +100,8 @@ rscreen() {
 }
 
 ts2date() { date -r "$1"; }
+date2ts() { date -j -f '%Y-%m-%d %T' "$1 00:00:00" +%s; }
+datetime2ts() { date -j -f '%Y-%m-%d %T' "$1" +%s; }
 
 # l(ist)ips Get local and WAN IP adddresses
 # $ lips
