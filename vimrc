@@ -7,6 +7,8 @@ execute pathogen#infect()
 call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 
+Plug 'dense-analysis/ale'
+
 " Initialize plugin system
 call plug#end()
 
