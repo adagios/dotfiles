@@ -1,5 +1,4 @@
 " Pathogen https://github.com/tpope/vim-pathogen
-runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 
 " Use Vim settings, rather then Vi settings (much better!).
