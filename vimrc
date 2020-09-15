@@ -9,6 +9,9 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'dense-analysis/ale'
 
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
 " Initialize plugin system
 call plug#end()
 
@@ -289,16 +292,27 @@ let g:airline#extensions#tabline#enabled = 1
 """"""""""""""""""""""""
 " unite
 """"""""""""""""""""""""
-let g:unite_source_history_yank_enable = 1
-let g:unite_source_rec_async_command = ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_selecta'])
-call unite#custom#profile('files', 'filters', 'sorter_rank')
-call unite#custom#source('file,file/new,buffer,file_rec','matchers', 'matcher_fuzzy')
-call unite#custom#source('file,file/new,buffer,file_rec','sorters', 'sorter_selecta')
-nnoremap <C-t> :<C-u>Unite -start-insert file file_rec/async:! file_mru<cr>
-" nnoremap <C-h> :<C-u>Unite history/yank<cr>
-nnoremap <C-b> :<C-u>Unite -start-insert buffer bookmark<cr>
+" let g:unite_source_history_yank_enable = 1
+" let g:unite_source_rec_async_command = ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']
+" call unite#filters#matcher_default#use(['matcher_fuzzy'])
+" call unite#filters#sorter_default#use(['sorter_selecta'])
+" call unite#custom#profile('files', 'filters', 'sorter_rank')
+" call unite#custom#source('file,file/new,buffer,file_rec','matchers', 'matcher_fuzzy')
+" call unite#custom#source('file,file/new,buffer,file_rec','sorters', 'sorter_selecta')
+" nnoremap <C-t> :<C-u>Unite -start-insert file file_rec/async:! file_mru<cr>
+" " nnoremap <C-h> :<C-u>Unite history/yank<cr>
+" nnoremap <C-b> :<C-u>Unite -start-insert buffer bookmark<cr>
+
+""""""""""""""""""""
+" fzf
+""""""""""""""""""""
+nnoremap <silent> <C-t> :Files<CR>
+nnoremap <silent> <C-b> :Buffers<CR>
+
+let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
+
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline'
 
 
 """"""""""""""""""""""""
