@@ -1,6 +1,15 @@
 " Pathogen https://github.com/tpope/vim-pathogen
 execute pathogen#infect()
 
+" Specify a directory for plugins
+" - For Neovim: stdpath('data') . '/plugged' (JN: didn't for compat)
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
+" Make sure you use single quotes
+
+" Initialize plugin system
+call plug#end()
+
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
