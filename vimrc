@@ -12,6 +12,10 @@ Plug 'dense-analysis/ale'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
+Plug 'posva/vim-vue'
+
+Plug 'rust-lang/rust.vim'
+
 " Initialize plugin system
 call plug#end()
 
