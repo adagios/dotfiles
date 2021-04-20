@@ -1,0 +1,58 @@
+#!/bin/zsh
+
+if [ ! -f 'pom.xml' ]; then
+   echo "can only work in a maven dir"
+   exit 1
+fi
+
+while getopts "mM" optname
+do
+    case "$optname" in
+        "m")
+            CHANGE="minor"
+            ;;
+        "M")
+            CHANGE="major"
+            ;;
+        "?")
+            echo "Unknown option $OPTARG"
+            ;;
+        ":")
+            echo "No argument value for option $OPTARG"
+            ;;
+        *)
+            # Should not occur
+            echo "Unknown error while processing options"
+            ;;
+    esac
+done
+
+if [ "$CHANGE" = "" ]; then
+   echo "must choose -m ou -M"
+   exit 1
+fi
+
+CURRENT_V=$(sed -e "s/xmlns/ignore/" pom.xml | xmllint --xpath "/project/version/text()" -)
+CURRENT_V_NUMBERS=${CURRENT_V/-SNAPSHOT/}
+PARTS=("${(s/./)CURRENT_V_NUMBERS}")
+
+if [ "$CHANGE" = "major" ]; then
+   NEW_V="$((PARTS[1] + 1)).${PARTS[2]}.${PARTS[3]}-SNAPSHOT"
+elif [ "$CHANGE" = "minor" ]; then
+   NEW_V="${PARTS[1]}.$((PARTS[2] + 1)).${PARTS[3]}-SNAPSHOT"
+fi
+
+
+# echo $CURRENT_V
+# echo $CURRENT_V_NUMBERS
+# echo $PARTS
+# echo $CHANGE
+# echo $NEW_V
+
+echo "changing version from [$CURRENT_V] to [$NEW_V]"
+
+mvn release:update-versions -DautoVersionSubmodules=true -DdevelopmentVersion="$NEW_V"
+
+git add **/pom.xml
+
+git commit -m "avança para $NEW_V"
