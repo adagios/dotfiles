@@ -5,7 +5,7 @@ if [ ! -f 'pom.xml' ]; then
    exit 1
 fi
 
-while getopts "mM" optname
+while getopts "mMp" optname
 do
     case "$optname" in
         "m")
@@ -13,6 +13,9 @@ do
             ;;
         "M")
             CHANGE="major"
+            ;;
+        "p")
+            CHANGE="patch"
             ;;
         "?")
             echo "Unknown option $OPTARG"
@@ -28,7 +31,7 @@ do
 done
 
 if [ "$CHANGE" = "" ]; then
-   echo "must choose -m ou -M"
+   echo "must choose -m (minor), -M (major) or -p (patch)"
    exit 1
 fi
 
@@ -40,6 +43,8 @@ if [ "$CHANGE" = "major" ]; then
    NEW_V="$((PARTS[1] + 1)).${PARTS[2]}.${PARTS[3]}-SNAPSHOT"
 elif [ "$CHANGE" = "minor" ]; then
    NEW_V="${PARTS[1]}.$((PARTS[2] + 1)).${PARTS[3]}-SNAPSHOT"
+elif [ "$CHANGE" = "patch" ]; then
+   NEW_V="${PARTS[1]}.${PARTS[2]}.$((PARTS[3] + 1))-SNAPSHOT"
 fi
 
 
