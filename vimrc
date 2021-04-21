@@ -12,9 +12,14 @@ Plug 'dense-analysis/ale'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-Plug 'posva/vim-vue'
-
 Plug 'rust-lang/rust.vim'
+
+Plug 'posva/vim-vue'
+" vou deixar este comentado, é mais novo mas o outro ainda tem mais seguidores
+"Plug 'leafOfTree/vim-vue-plugin'
+
+Plug 'leafgarland/typescript-vim'
+Plug 'ianks/vim-tsx'
 
 " Initialize plugin system
 call plug#end()
@@ -317,6 +322,24 @@ let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffse
 
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline'
+
+" :BD para selecionar buffers para apagar
+function! s:list_buffers()
+  redir => list
+  silent ls
+  redir END
+  return split(list, "\n")
+endfunction
+
+function! s:delete_buffers(lines)
+  execute 'bwipeout' join(map(a:lines, {_, line -> split(line)[0]}))
+endfunction
+
+command! BD call fzf#run(fzf#wrap({
+  \ 'source': s:list_buffers(),
+  \ 'sink*': { lines -> s:delete_buffers(lines) },
+  \ 'options': '--multi --reverse --bind ctrl-a:select-all+accept'
+\ }))
 
 
 """"""""""""""""""""""""
