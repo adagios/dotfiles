@@ -61,7 +61,7 @@ fi
 
 echo "changing version from [$CURRENT_V] to [$NEW_V]"
 
-mvn "$OFFLINE" release:update-versions -DautoVersionSubmodules=true -DdevelopmentVersion="$NEW_V"
+mvn $OFFLINE release:update-versions -DautoVersionSubmodules=true -DdevelopmentVersion="$NEW_V"
 
 git add **/pom.xml
 
