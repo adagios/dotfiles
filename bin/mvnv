@@ -45,9 +45,9 @@ CURRENT_V_NUMBERS=${CURRENT_V/-SNAPSHOT/}
 PARTS=("${(s/./)CURRENT_V_NUMBERS}")
 
 if [ "$CHANGE" = "major" ]; then
-   NEW_V="$((PARTS[1] + 1)).${PARTS[2]}.${PARTS[3]}-SNAPSHOT"
+   NEW_V="$((PARTS[1] + 1)).0.0-SNAPSHOT"
 elif [ "$CHANGE" = "minor" ]; then
-   NEW_V="${PARTS[1]}.$((PARTS[2] + 1)).${PARTS[3]}-SNAPSHOT"
+   NEW_V="${PARTS[1]}.$((PARTS[2] + 1)).0-SNAPSHOT"
 elif [ "$CHANGE" = "patch" ]; then
    NEW_V="${PARTS[1]}.${PARTS[2]}.$((PARTS[3] + 1))-SNAPSHOT"
 fi
