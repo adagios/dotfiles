@@ -24,7 +24,7 @@ Dir.foreach('.') do |f|
    Dir.chdir(f) do |dir|
       # if Dir.new('.').include?('.git')
       if File.directory?('.git')
-         output=`git log --all #{$stdout.tty? ? '--color': ''} --author="#{author}" --after="#{last_week_start} 00:00:00" --before="#{last_week_end} 23:59:59" --pretty=format:'%Cred%ad %Cgreen%d%Creset%s' --date=short`
+         output=`git log --all #{$stdout.tty? ? '--color': ''} --author="#{author}" --after="#{last_week_start} 00:00:00" --before="#{last_week_end} 23:59:59" --pretty=format:'%Cred%ad %Cgreen%d%Creset%s' --date=short | grep -v 'refs/stash'`
 
          if output.length>0 then
             puts f
