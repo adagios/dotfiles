@@ -182,10 +182,10 @@ set fileencodings=ucs-bom,utf-8,latin1
 
 "let xml_use_xhtml = 1
 
-:command W w
-:command Q q
-:command Wq wq
-:command WQ wq
+:command! W w
+:command! Q q
+:command! Wq wq
+:command! WQ wq
 
 " map <C-t> :tabnew<CR>
 " map <C-left> :tabp<CR>
@@ -295,7 +295,9 @@ nmap <F6> :bnext<CR>
 """"""""""""""""""""""""
 " Ack
 """"""""""""""""""""""""
-nmap <C-a> :Ack<space>
+nmap <C-a> yiw:Ack<space><C-r>"
+nnoremap <Leader>ac yiw:Ack<space><C-r>"
+nnoremap <Leader>as :Ack<space><C-r>/
 if executable('ag')
    let g:ackprg = 'ag --vimgrep'
 endif
@@ -305,8 +307,8 @@ endif
 """"""""""""""""""""""""
 map <leader>c <c-_><c-_>
 
-command StripWS %s/\s\+$//e
-command StripPivotal %s/\[#[^\]]*\]/[REDACTED]/e
+command! StripWS %s/\s\+$//e
+command! StripPivotal %s/\[#[^\]]*\]/[REDACTED]/e
 
 
 " crontab editor fix (http://tim.theenchanter.com/2008/07/crontab-temp-file-must-be-edited-in.html)
@@ -351,21 +353,6 @@ endfunction
 " airline
 """"""""""""""""""""""""
 let g:airline#extensions#tabline#enabled = 1
-
-
-""""""""""""""""""""""""
-" unite
-""""""""""""""""""""""""
-" let g:unite_source_history_yank_enable = 1
-" let g:unite_source_rec_async_command = ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']
-" call unite#filters#matcher_default#use(['matcher_fuzzy'])
-" call unite#filters#sorter_default#use(['sorter_selecta'])
-" call unite#custom#profile('files', 'filters', 'sorter_rank')
-" call unite#custom#source('file,file/new,buffer,file_rec','matchers', 'matcher_fuzzy')
-" call unite#custom#source('file,file/new,buffer,file_rec','sorters', 'sorter_selecta')
-" nnoremap <C-t> :<C-u>Unite -start-insert file file_rec/async:! file_mru<cr>
-" " nnoremap <C-h> :<C-u>Unite history/yank<cr>
-" nnoremap <C-b> :<C-u>Unite -start-insert buffer bookmark<cr>
 
 """"""""""""""""""""
 " fzf
