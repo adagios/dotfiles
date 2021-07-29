@@ -252,6 +252,11 @@ function! TagSelection()
     endif
 endfunction
 
+""""""""""""""""""""""""
+" Terminal
+""""""""""""""""""""""""
+command! -nargs=* T split | terminal <args>
+noremap <Leader>t :T<CR>a
 
 """"""""""""""""""""""""
 " NERDTree
