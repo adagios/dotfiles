@@ -2,8 +2,6 @@
 
 SERVERS=$(searcher --server dogfooding.cultofbits.com --def Máquina --query "funcionamento produção acessível:sim" --single "Nome Máquina" --size 100)
 
-echo "# heapdumps"
 for server in $SERVERS; do
-   ssh "cob@$server"\
-      -C "find /var/log -name '*.hprof*' -printf '$server: [%CY-%Cm-%Cd %CH:%CM] %k Kb %p\\n' 2>/dev/null | egrep '.*'"
+   ssh root@"$server" "sar | tail -1 | sed 's/ \+/;/g'| cut -d';' -f7 | awk '0+\$1 >= 5 {printf \"%-30s: %5s \n\", \"$server\", \$1 }'"
 done
