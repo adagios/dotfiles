@@ -3,9 +3,16 @@ complete -o bashdefault -o default -o nospace -F _git rgit
 complete -o bashdefault -o default -o nospace -F _ssh rtmux
 complete -o bashdefault -o default -o nospace -F _ssh rscreen
 complete -C ~/.bash/completion_scripts/rake_completion -o default rake
-complete -C ~/.bash/completion_scripts/project_completion -o default c
-complete -C ~/.bash/completion_scripts/capistrano_completion -o default cap
 source ~/.bash/completion_scripts/mvn_completion
+
+# copied from https://github.com/scop/bash-completion/bash_completion
+# to work around https://github.com/Backblaze/B2_Command_Line_Tool/issues/500
+_have()
+{
+    # Completions for system administrator commands are installed as well in
+    # case completion is attempted via `sudo command ...'.
+    PATH=$PATH:/usr/sbin:/sbin:/usr/local/sbin type $1 &>/dev/null
+}
 
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
    source $(brew --prefix)/etc/bash_completion
