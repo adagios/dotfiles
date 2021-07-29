@@ -32,12 +32,6 @@ HISTSIZE=10000
 # set colors for solarized (https://github.com/seebi/dircolors-solarized/issues/10)
 export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
 
-# WorkingDirectory
-# ################
-
-export WDHOME=$HOME/.wd
-source $WDHOME/wdaliases.sh
-
 
 # MISC
 # ####
