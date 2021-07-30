@@ -7,6 +7,9 @@ execute pathogen#infect()
 call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
 Plug 'dense-analysis/ale'
 
 if has('nvim')
@@ -357,6 +360,13 @@ endfunction
 """"""""""""""""""""""""
 " airline
 """"""""""""""""""""""""
+
+let g:airline_theme='base16_classic_light'
+let g:airline_powerline_fonts = 1
+
+let g:airline_section_b = "%{airline#util#wrap(airline#extensions#hunks#get_hunks(),100)}"
+let g:airline_section_z =  "%p%% %#__accent_bold#%l%#__restore__#%#__accent_bold#/%L%#__restore__# %#__accent_bold#%v%#__restore__#"
+
 let g:airline#extensions#tabline#enabled = 1
 
 """"""""""""""""""""
