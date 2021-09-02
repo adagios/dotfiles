@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SERVERS=$(searcher --server dogfooding.cultofbits.com --def Máquina --query "funcionamento linode produção" --single "Nome Máquina" --size 100)
+SERVERS=$(./searcher --server dogfooding.cultofbits.com --def Máquina --query "funcionamento linode produção" --single "Nome Máquina" --size 100)
 
 echo "OOM Killer, last 5 days:"
 for server in $SERVERS; do

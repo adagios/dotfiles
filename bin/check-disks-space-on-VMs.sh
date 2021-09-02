@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SERVERS=$(searcher --server dogfooding.cultofbits.com --def Máquina --query "funcionamento produção acessível:sim" --single "Nome Máquina" --size 100)
+SERVERS=$(./searcher --server dogfooding.cultofbits.com --def Máquina --query "funcionamento produção acessível:sim" --single "Nome Máquina" --size 100)
 
 for server in $SERVERS; do
    [ -t 1 ] || echo '```'

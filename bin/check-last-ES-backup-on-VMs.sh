@@ -3,7 +3,7 @@
 # for jq
 PATH="$PATH:/usr/local/bin"
 
-SERVERS=$(searcher --server dogfooding.cultofbits.com --def Máquina --query "funcionamento produção acessível:sim" --single "Nome Máquina" --size 100)
+SERVERS=$(./searcher --server dogfooding.cultofbits.com --def Máquina --query "funcionamento produção acessível:sim" --single "Nome Máquina" --size 100)
 
 echo "# Detalhes do backup ES de $(date +'%Y-%m-%d')"
 for server in $SERVERS; do
