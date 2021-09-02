@@ -22,7 +22,7 @@ alias hfix2='history -a && nl ~/.bash_history | sort -k2 -k1nr | uniq -f1 | sort
 export GIT_PS1_SHOWCOLORHINTS=true
 export GIT_PS1_SHOWDIRTYSTATE=1
 
-export PROMPT_COMMAND='hfix2; __git_ps1 "\A - [\W" "] "'
+export PROMPT_COMMAND='hfix2; PS1="\A - [\W`__git_ps1`] "'
 
 HISTFILESIZE=10000
 HISTSIZE=10000
