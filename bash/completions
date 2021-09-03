@@ -13,7 +13,11 @@ _have()
 
 # same completion as given by complete -p git
 complete -o bashdefault -o default -o nospace -F __git_wrap__git_main rgit
+
+# dizer de onde carregar a _ssh se ainda não tiver havido complete do ssh
+_xfunc /usr/local/share/bash-completion/completions/ssh _ssh
 complete -o bashdefault -o default -o nospace -F _ssh rtmux
 complete -o bashdefault -o default -o nospace -F _ssh rscreen
+
 complete -C ~/.bash/completion_scripts/rake_completion -o default rake
 source ~/.bash/completion_scripts/mvn_completion
