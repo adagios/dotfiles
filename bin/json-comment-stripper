@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+
+// para usar directamente: node --print "JSON.stringify(Function('\"use strict\";return (' + require('fs').readFileSync(0).toString() + ')')())"
+
+console.log(
+JSON.stringify(Function('\"use strict\";return (' + require('fs').readFileSync(0).toString() + ')')())
+)
+
+// vim: sw=4 ts=4 et
+// vim: set filetype=javascript
