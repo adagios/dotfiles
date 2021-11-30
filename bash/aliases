@@ -73,7 +73,7 @@ rtfm(){
    help $@ || man $@ || w3m -dump http://www.google.com/search?q="$@" | head -40 | tail -30
 }
 
-alias v='head pom.xml | grep "<version>" | sed "s/.*version>\(.*\)<.*/\1/"'
+alias v='[ -f pom.xml ] && (head pom.xml | grep "<version>" | sed "s/.*version>\(.*\)<.*/\1/") || jq .version package.json -r'
 alias vg='head -50 pom.xml | grep "genesis.version" | sed "s/.*version>\(.*\)<.*/\1/"'
 
 alias j7='export JAVA_HOME=$(/usr/libexec/java_home -v 1.7) && java -version'
