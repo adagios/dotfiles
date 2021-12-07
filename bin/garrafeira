@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+PESQUISA="$1"
+
+PESQUISA="${PESQUISA/ /+}"
+
+curl "https://www.garrafeiranacional.com/autocomplete.php?r=9&store=default&q=$PESQUISA&_=1576592423930" -s| jq ".product.docs[] | { \"name\": .name, \"price\": .price }"
