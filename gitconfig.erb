@@ -28,6 +28,8 @@
 
    delete-merged = !git branch --merged | grep -v '\\*' | grep -v 'master' | xargs -n 1 git branch -d
 
+   after-pr = !git fetch && git remote prune $(git remote) && git delete-merged-branches
+
    lol   = log --graph --decorate --pretty=oneline --abbrev-commit
    lola  = log --graph --decorate --pretty=oneline --abbrev-commit --all
    lols  = log --graph --decorate --pretty=oneline --abbrev-commit --all --simplify-by-decoration
