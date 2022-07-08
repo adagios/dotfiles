@@ -81,7 +81,7 @@ alias j8='export JAVA_HOME=$(/usr/libexec/java_home -v 1.8) && java -version'
 alias j9='export JAVA_HOME=$(/usr/libexec/java_home -v 9) && java -version'
 alias j11='export JAVA_HOME=$(/usr/libexec/java_home -v 11) && java -version'
 
-# Original dotfiles aliases
+alias llinode='linode-cli linodes list --format "id,label,region,type,status,ipv4,disk,memory,vcpus"'
 
 # misc
 alias reload='. ~/.bash_profile'
