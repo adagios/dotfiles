@@ -299,6 +299,12 @@ let g:BufferListMaxWidth= 80
 nmap <F5> :bprevious<CR>
 nmap <F6> :bnext<CR>
 
+" exclude quickfix from buffer list
+augroup qf
+    autocmd!
+    autocmd FileType qf set nobuflisted
+augroup END
+
 
 """"""""""""""""""""""""
 " Ack
