@@ -30,6 +30,9 @@ Plug 'ianks/vim-tsx'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
+" Plug 'lewis6991/gitsigns.nvim'
+Plug 'airblade/vim-gitgutter'
+
 " Initialize plugin system
 call plug#end()
 
@@ -433,5 +436,19 @@ autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
 
 set path=.,,src/,test/
 
-" for a faster GitGutter update
+
+""""""""""""""""""""""""
+"     GitGutter
+""""""""""""""""""""""""
+" for a faster update
 set updatetime=100
+
+" to remove bg from non-signed lines
+highlight! link SignColumn LineNr
+
+" command to fill and open location
+let g:gitgutter_use_location_list = 0
+command! Gqf GitGutterQuickFix | copen
+
+nmap <space>hp <Plug>(GitGutterPreviewHunk)
+nmap <space>hq :Gqf<cr>
