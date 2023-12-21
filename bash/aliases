@@ -65,7 +65,7 @@ alias ql='qlmanage -p &>/dev/null'
 # one-liners
 alias notify_me='echo "It was done master!" | growlnotify -s'
 alias inets='ifconfig |grep "inet [0-9\.]*"'
-alias webshare='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"'
+alias webshare='python3 -m http.server --cgi 8080'
 alias xpdl-clean='sed -i -e "s/xpdl://g"'
 alias epoch2localtime="perl -le 'print scalar localtime \$ARGV[0]/1000'"
 
