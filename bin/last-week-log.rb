@@ -19,7 +19,7 @@ puts "==========================================================================
 
 Dir.foreach('.') do |f|
    next unless File.directory? f #only dirs
-   next if f =~ /\.+/  #skip . and ..
+   next if f =~ /^\.+/  #skip . and ..
 
    Dir.chdir(f) do |dir|
       # if Dir.new('.').include?('.git')
