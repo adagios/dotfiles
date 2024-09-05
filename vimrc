@@ -27,11 +27,16 @@ Plug 'posva/vim-vue'
 
 Plug 'leafgarland/typescript-vim'
 Plug 'ianks/vim-tsx'
+Plug 'pangloss/vim-javascript'
+
+Plug 'rickhowe/spotdiff.vim'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Plug 'lewis6991/gitsigns.nvim'
 Plug 'airblade/vim-gitgutter'
+
+Plug 'glench/vim-jinja2-syntax'
 
 " Initialize plugin system
 call plug#end()
@@ -75,7 +80,7 @@ lua << EOF
 
    -- Use a loop to conveniently call 'setup' on multiple servers and
    -- map buffer local keybindings when the language server attaches
-   local servers = { "bashls", "html", "tsserver", "vuels" }
+   local servers = { "bashls", "html", "tsserver", "vuels", "rust_analyzer", "pyright" }
    for _, lsp in ipairs(servers) do
      nvim_lsp[lsp].setup {
        on_attach = on_attach,
@@ -91,7 +96,7 @@ if has('nvim')
 lua << EOF
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all" (the five listed parsers should always be installed)
-  ensure_installed = { "c", "lua", "vim", "vimdoc", "query" },
+  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "python" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -173,8 +178,10 @@ set guioptions-=r "disable Right scrollbar
 
 set diffopt+=indent-heuristic "https://vimways.org/2018/the-power-of-diff/
 if &diff
-  set fullscreen
-  autocmd VimResized * wincmd =
+  if has("gui_running")
+    set fullscreen
+    autocmd VimResized * wincmd =
+  endif
   map <leader>1 :diffget LOCAL<CR>
   map <leader>3 :diffget REMOTE<CR>
 endif
@@ -196,6 +203,9 @@ set shiftwidth=3
 set expandtab
 
 set scrolloff=3
+
+" don't show preview when using omnifunc
+set completeopt-=preview
 
 set wildmenu
 set laststatus=2
@@ -431,7 +441,7 @@ endfunction
 let g:airline_theme='base16_classic_light'
 let g:airline_powerline_fonts = 1
 
-let g:airline_section_b = "%{airline#util#wrap(airline#extensions#hunks#get_hunks(),100)}"
+let g:airline_section_b = ""
 let g:airline_section_z =  "%p%% %#__accent_bold#%l%#__restore__#%#__accent_bold#/%L%#__restore__# %#__accent_bold#%v%#__restore__#"
 
 let g:airline#extensions#tabline#enabled = 1
