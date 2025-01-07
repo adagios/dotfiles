@@ -1,0 +1,130 @@
+# vim: filetype=sh
+# Aliases
+# #######
+
+# Some example alias instructions
+# If these are enabled they will be used instead of any instructions
+# they may mask.  For example, alias rm='rm -i' will mask the rm
+# application.  To override the alias instruction use a \ before, ie
+# \rm will call the real rm not the alias.
+
+alias cd..='cd ..'
+
+# Interactive operation...
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+# Default to human readable figures
+alias df='df -h'
+alias du='du'
+alias du-sorted='du -cs * .[^\.]* 2>/dev/null | sort -nr | cut -f2 | xargs -IXX  du -hs "XX" 2> /dev/null' 
+
+# Some shortcuts for different directory listings
+alias ls='ls -Gh'                 # classify files in colour
+alias ll='ls -la'                 # long list
+alias la='ls -A'                  # all but . and ..
+
+# git related aliases
+alias gs='git status -sb'
+alias gr='cd "$(git rev-parse --show-toplevel)"'
+
+git-prune-merged() {
+   current_branch=$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
+   if [ "$current_branch" != "master" ]; then
+      echo "WARNING: You are on branch $current_branch, NOT master."
+   fi
+   echo "Fetching merged branches..."
+   local_branches=$(git branch --merged | grep -v 'master$' | grep -v "$current_branch$")
+   if [ -z "$local_branches" ]; then
+      echo "No existing branches have been merged into $current_branch."
+   else
+      echo "This will remove the following branches:"
+      if [ -n "$local_branches" ]; then
+         echo "$local_branches"
+      fi
+      read -p "Continue? (y/n): " -n 1 choice
+      echo
+      if [ "$choice" == "y" ] || [ "$choice" == "Y" ]; then
+         # Remove local branches
+         git branch -d `git branch --merged | grep -v 'master$' | grep -v "$current_branch$" | sed 's/origin\///g' | tr -d '\n'`
+      else
+         echo "No branches removed."
+      fi
+   fi
+}
+
+# set default options for some cmds
+alias grep='grep --color'                     # show differences in colour
+alias telnet='telnet -e "^±"'
+alias pgrep='pgrep -fl'
+alias ltop='/usr/bin/top -ocpu -R -F -s 2 -n20'
+alias jawe='java -jar ~/reps/git/login_ldap/bin/ext_lib/skark-lib-1.1.0/contrib/jawe.jar'
+alias ql='qlmanage -p &>/dev/null'
+
+# one-liners
+alias notify_me='echo "It was done master!" | growlnotify -s'
+alias inets='ifconfig |grep "inet [0-9\.]*"'
+alias webshare='python3 -m http.server --cgi 8080'
+alias xpdl-clean='sed -i -e "s/xpdl://g"'
+alias epoch2localtime="perl -le 'print scalar localtime \$ARGV[0]/1000'"
+
+rtfm(){ 
+   help $@ || man $@ || w3m -dump http://www.google.com/search?q="$@" | head -40 | tail -30
+}
+
+alias v='[ -f pom.xml ] && (head pom.xml | grep "<version>" | sed "s/.*version>\(.*\)<.*/\1/") || jq .version package.json -r'
+alias vg='head -50 pom.xml | grep "genesis.version" | sed "s/.*version>\(.*\)<.*/\1/"'
+
+alias j7='export JAVA_HOME=$(/usr/libexec/java_home -v 1.7) && java -version'
+alias j8='export JAVA_HOME=$(/usr/libexec/java_home -v 1.8) && java -version'
+alias j9='export JAVA_HOME=$(/usr/libexec/java_home -v 9) && java -version'
+alias j11='export JAVA_HOME=$(/usr/libexec/java_home -v 11) && java -version'
+
+alias llinode='linode-cli linodes list --format "id,label,region,type,status,ipv4,disk,memory,vcpus"'
+
+# misc
+alias reload='source ~/.zshrc'
+
+alias vbox-network-restart='VBoxManage guestcontrol $(cat .vagrant/machines/*/virtualbox/id) --username vagrant --password vagrant run -- /usr/bin/sudo /etc/init.d/network restart'
+
+rtmux() {
+   server=$1
+   shift
+   autossh -M 0 -t "$server" "$@" "tmux -qu has -t jone && tmux -qu attach -t jone || tmux -qu new -s jone"
+}
+rscreen() {
+   server=$1
+   shift
+   autossh -M 0 -t "$server" "$@" "screen -a -A -O -U -d -R"
+}
+
+ts2date() { date -r "$1"; }
+date2ts() { date -j -f '%Y-%m-%d %T' "$1 00:00:00" +%s; }
+datetime2ts() { date -j -f '%Y-%m-%d %T' "$1" +%s; }
+
+# l(ist)ips Get local and WAN IP adddresses
+# $ lips
+#    Local IP: 10.0.1.4
+# External IP: 41.32.11.102
+lips() {
+    local ip=$(ifconfig | grep "inet " | grep -v 127.0.0.1 | awk '{print $2}')
+    local locip extip
+
+    [ "$ip" != "" ] && locip=$(echo "$ip" | tr "\n" " ") || locip="inactive"
+
+    ip=$(curl -sS ifconfig.me)
+    [ "$ip" != "" ] && extip=$ip || extip="inactive"
+
+    printf '%11s: %s\n%11s: %s\n' "Local IPs" "$locip" "External IP" $extip
+}
+
+alert(){
+   msg=${1:-"Something happened"}
+   title=${2:-"Alert"}
+   sound=${3:-"Purr"}
+   display="display notification \"$msg\""
+   with_title="with title \"$title\""
+   and_sound="sound name \"$sound\""
+   /usr/bin/osascript -e "$display $with_title $and_sound"
+}

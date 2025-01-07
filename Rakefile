@@ -10,20 +10,29 @@ desc "install the dot files into user's home directory"
 task :install do
   replace_all = false
 
-  # Process root level files/dirs
-  Dir['*'].each do |file|
-    next if %w[Rakefile README.rdoc LICENSE applescripts Library].include? file
+  files = Dir['*'] - %w[Rakefile README.rdoc LICENSE applescripts Library]
+  files = files - Dir['*bash*'] - %W[inputrc] unless ENV['shell'] == 'bash'
+  files = files - Dir['*zsh*']                unless ENV['shell'] == 'zsh'
+  files = files - %W[iTerm]                   if     ENV['iterm'] == 'false'
+
+  #files.each do |file|
+  #  destination = File.join(ENV['HOME'], ".#{file.sub('.erb','')}")
+  #  printf "%-20s : %-30s : %s \n", file, destination, File.exist?(destination)
+  #end
+  #exit
+
+  files.each do |file|
     process_file(file, replace_all)
   end
 
   # Recursively process files inside Library
-  Dir.glob("Library/**/*").reject{|f| File.directory? f}.each do |file|
-     process_file(file, replace_all, "")
-  end
+  #TMP# Dir.glob("Library/**/*").reject{|f| File.directory? f}.each do |file|
+     #TMP# process_file(file, replace_all, "")
+  #TMP# end
 
   #Hack copy applescripts into Library/Scripts
-  system %Q{mkdir "$HOME/Library/Scripts" || rm -rf "$HOME/Library/Scripts/*"}
-  system %Q{cp -rf "$PWD/applescripts"/* "$HOME/Library/Scripts/"}
+  #TMP# system %Q{mkdir "$HOME/Library/Scripts" || rm -rf "$HOME/Library/Scripts/*"}
+  #TMP# system %Q{cp -rf "$PWD/applescripts"/* "$HOME/Library/Scripts/"}
 end
 
 def process_file(file, replace_all, prefix=".")
