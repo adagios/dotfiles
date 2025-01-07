@@ -11,8 +11,8 @@ task :install do
   replace_all = false
 
   files = Dir['*'] - %w[Rakefile README.rdoc LICENSE applescripts Library]
-  files = files - Dir['*bash*'] - %W[inputrc] unless ENV['shell'] == 'bash'
-  files = files - Dir['*zsh*']                unless ENV['shell'] == 'zsh'
+  files = files - Dir['*bash*'] - %W[inputrc] unless ENV['SHELL'].end_with? 'bash'
+  files = files - Dir['*zsh*']                unless ENV['SHELL'].end_with? 'zsh'
   files = files - %W[iTerm]                   if     ENV['iterm'] == 'false'
 
   #files.each do |file|
