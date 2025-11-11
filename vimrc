@@ -10,6 +10,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+Plug 'chriskempson/base16-vim'
+
 " comentei para não ter repetidos
 "Plug 'dense-analysis/ale'
 
@@ -238,7 +240,7 @@ if has("gui_running")
 else
    "colors default
    " color Tomorrow-Night
-   color Tomorrow
+   color base16-tomorrow
 endif
 "colors solarized
 
