@@ -506,4 +506,6 @@ let g:gitgutter_use_location_list = 0
 command! Gqf GitGutterQuickFix | copen
 
 nmap <space>hp <Plug>(GitGutterPreviewHunk)
+nmap <space>hs <Plug>(GitGutterPreviewHunk)
+nmap <space>hd :GitGutterDiffOrig
 nmap <space>hq :Gqf<cr>
