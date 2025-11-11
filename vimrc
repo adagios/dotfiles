@@ -401,17 +401,11 @@ augroup END
 """"""""""""""""""""""""
 " Ack
 """"""""""""""""""""""""
-nmap <C-a> yiw:Ack<space><C-r>"
-nnoremap <Leader>ac yiw:Ack<space><C-r>"
-nnoremap <Leader>as :Ack<space><C-r>/
-if executable('ag')
-   let g:ackprg = 'ag --vimgrep'
-endif
 
 """"""""""""""""""""""""
 " tComment
 """"""""""""""""""""""""
-map <leader>c <c-_><c-_>
+map <leader>c gcc
 
 command! StripWS %s/\s\+$//e
 command! StripPivotal %s/\[#[^\]]*\]/[REDACTED]/e
