@@ -12,9 +12,6 @@ Plug 'vim-airline/vim-airline-themes'
 
 Plug 'chriskempson/base16-vim'
 
-" comentei para não ter repetidos
-"Plug 'dense-analysis/ale'
-
 if has('nvim')
    Plug 'neovim/nvim-lspconfig'
 end
@@ -400,9 +397,6 @@ augroup qf
 augroup END
 
 
-""""""""""""""""""""""""
-" Ack
-""""""""""""""""""""""""
 
 """"""""""""""""""""""""
 " tComment
@@ -471,10 +465,6 @@ let g:airline_section_b = ""
 let g:airline_section_z =  "%p%% %#__accent_bold#%l%#__restore__#%#__accent_bold#/%L%#__restore__# %#__accent_bold#%v%#__restore__#"
 
 let g:airline#extensions#tabline#enabled = 1
-
-""""""""""""""""""""
-" fzf
-""""""""""""""""""""
 
 """"""""""""""""""""
 " telescope
