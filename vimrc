@@ -41,6 +41,8 @@ Plug 'airblade/vim-gitgutter'
 
 Plug 'glench/vim-jinja2-syntax'
 
+Plug 'preservim/nerdtree'
+
 " Initialize plugin system
 call plug#end()
 
