@@ -19,8 +19,8 @@ if has('nvim')
    Plug 'neovim/nvim-lspconfig'
 end
 
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
 
 Plug 'rust-lang/rust.vim'
 
@@ -453,32 +453,17 @@ let g:airline#extensions#tabline#enabled = 1
 """"""""""""""""""""
 " fzf
 """"""""""""""""""""
-nnoremap <silent> <C-t> :Files<CR>
-nnoremap <silent> <C-b> :Buffers<CR>
 
-let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
-
-let $FZF_DEFAULT_COMMAND = 'ag -g ""'
-let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline'
-
-" :BD para selecionar buffers para apagar
-function! s:list_buffers()
-  redir => list
-  silent ls
-  redir END
-  return split(list, "\n")
-endfunction
-
-function! s:delete_buffers(lines)
-  execute 'bwipeout' join(map(a:lines, {_, line -> split(line)[0]}))
-endfunction
-
-command! BD call fzf#run(fzf#wrap({
-  \ 'source': s:list_buffers(),
-  \ 'sink*': { lines -> s:delete_buffers(lines) },
-  \ 'options': '--multi --reverse --bind ctrl-a:select-all+accept'
-\ }))
-
+""""""""""""""""""""
+" telescope
+""""""""""""""""""""
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <silent> <C-t> <cmd>Telescope find_files<CR>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <silent> <C-a> <cmd>Telescope grep_string<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 """"""""""""""""""""""""
 " syntastic
