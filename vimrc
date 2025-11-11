@@ -84,7 +84,7 @@ lua << EOF
 
    -- Use a loop to conveniently call 'setup' on multiple servers and
    -- map buffer local keybindings when the language server attaches
-   local servers = { "bashls", "html", "ts_ls", "vuels", "rust_analyzer", "pyright" }
+   local servers = { "bashls", "html", "vuels", "rust_analyzer", "pyright", "gopls" }
    for _, lsp in ipairs(servers) do
      nvim_lsp[lsp].setup {
        on_attach = on_attach,
@@ -93,6 +93,23 @@ lua << EOF
        }
      }
    end
+   nvim_lsp['ts_ls'].setup({
+       on_attach = on_attach,
+       flags = {
+         debounce_text_changes = 150,
+       },
+      -- Enable TypeScript server logging
+      init_options = {
+         tsserver = {
+            logVerbosity = "verbose", -- Can be "off", "normal", "verbose"
+            logDirectory = "/Users/joao/tmp/", -- Set a directory for logs
+            -- trace = {
+            --    server = "verbose" -- More detailed server tracing
+            -- }
+         }
+      }
+   })
+
 EOF
 end
 
@@ -408,9 +425,18 @@ autocmd FileType crontab setlocal nowritebackup
 " GO
 """"""""""""""""""""""""
 " run fmt after save
-autocmd FileType go autocmd BufWritePre <buffer> Fmt
+autocmd FileType go autocmd BufWritePre <buffer> call GoFmt()
 autocmd FileType go compiler go
 autocmd FileType go setlocal foldmethod=syntax
+
+function! GoFmt()
+  let saved_view = winsaveview()
+  silent %!gofmt
+  if v:shell_error > 0
+    silent undo
+  endif
+  call winrestview(saved_view)
+endfunction
 
 
 """"""""""""""""""""""""
