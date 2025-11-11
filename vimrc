@@ -10,7 +10,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-Plug 'dense-analysis/ale'
+" comentei para não ter repetidos
+"Plug 'dense-analysis/ale'
 
 if has('nvim')
    Plug 'neovim/nvim-lspconfig'
