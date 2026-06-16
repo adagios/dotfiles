@@ -92,6 +92,7 @@ lua << EOF
       "bashls",
       "html",
       "vue_ls",
+      "eslint",
       "rust_analyzer",
       "pyright",
       "gopls",
