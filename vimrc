@@ -12,12 +12,14 @@ Plug 'vim-airline/vim-airline-themes'
 
 Plug 'chriskempson/base16-vim'
 
+Plug 'mason-org/mason.nvim'
+
 if has('nvim')
    Plug 'neovim/nvim-lspconfig'
 end
 
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
+Plug 'nvim-telescope/telescope.nvim'
 
 Plug 'rust-lang/rust.vim'
 
@@ -31,7 +33,7 @@ Plug 'pangloss/vim-javascript'
 
 Plug 'rickhowe/spotdiff.vim'
 
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate', 'branch': 'main'}
 
 " Plug 'lewis6991/gitsigns.nvim'
 Plug 'airblade/vim-gitgutter'
@@ -45,7 +47,10 @@ call plug#end()
 
 if has('nvim')
 lua << EOF
-   local nvim_lsp = require('lspconfig')
+   require("mason").setup()
+
+   -- local nvim_lsp = require('lspconfig')
+   vim.lsp.log.set_level("info")
 
    -- Use an on_attach function to only map the following keys
    -- after the language server attaches to the current buffer
@@ -83,16 +88,36 @@ lua << EOF
 
    -- Use a loop to conveniently call 'setup' on multiple servers and
    -- map buffer local keybindings when the language server attaches
-   local servers = { "bashls", "html", "vuels", "rust_analyzer", "pyright", "gopls" }
+   local servers = {
+      "bashls",
+      "html",
+      "vue_ls",
+      "rust_analyzer",
+      "pyright",
+      "gopls",
+      "jinja_lsp",
+      "terraform_lsp",
+      "ansiblels"
+   }
    for _, lsp in ipairs(servers) do
-     nvim_lsp[lsp].setup {
+     vim.lsp.config(lsp, {
        on_attach = on_attach,
        flags = {
          debounce_text_changes = 150,
        }
-     }
+     })
+     vim.lsp.enable(lsp)
    end
-   nvim_lsp['ts_ls'].setup({
+
+   local vue_language_server_path = vim.fn.expand '$MASON/packages' .. '/vue-language-server' .. '/node_modules/@vue/language-server'
+   local vue_plugin = {
+      name = '@vue/typescript-plugin',
+      location = vue_language_server_path,
+      languages = { 'vue' },
+      configNamespace = 'typescript',
+   }
+
+   vim.lsp.config('ts_ls', {
        on_attach = on_attach,
        flags = {
          debounce_text_changes = 150,
@@ -100,73 +125,80 @@ lua << EOF
       -- Enable TypeScript server logging
       init_options = {
          tsserver = {
-            logVerbosity = "verbose", -- Can be "off", "normal", "verbose"
+            logVerbosity = "normal", -- Can be "off", "normal", "verbose"
             logDirectory = "/Users/joao/tmp/", -- Set a directory for logs
             -- trace = {
             --    server = "verbose" -- More detailed server tracing
             -- }
-         }
-      }
+         },
+         plugins = {
+            vue_plugin,
+         },
+      },
+      filetypes = { 'javascript', 'typescript', 'vue' },
    })
+   vim.lsp.enable('ts_ls')
 
 EOF
 end
 
-if has('nvim')
-lua << EOF
-require'nvim-treesitter.configs'.setup {
-  -- A list of parser names, or "all" (the five listed parsers should always be installed)
-  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "python" },
-
-  -- Install parsers synchronously (only applied to `ensure_installed`)
-  sync_install = false,
-
-  -- Automatically install missing parsers when entering buffer
-  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-  -- auto_install = true,
-
-  -- List of parsers to ignore installing (or "all")
-  -- ignore_install = { "javascript" },
-
-  ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
-  -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
-
-  highlight = {
-    enable = true,
-
-    -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
-    -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
-    -- the name of the parser)
-    -- list of language that will be disabled
-    disable = { "c", "rust" },
-    -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
-    disable = function(lang, buf)
-        local max_filesize = 100 * 1024 -- 100 KB
-        local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-        if ok and stats and stats.size > max_filesize then
-            return true
-        end
-    end,
-
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
-  },
-
-  incremental_selection = {
-     enable = true,
-     keymaps = {
-        init_selection = "<M-Up>", -- set to `false` to disable one of the mappings
-        node_incremental = "<M-Up>",
-        scope_incremental = "grc",
-        node_decremental = "<M-Down>",
-     },
-  },
-}
-EOF
-end
+"https://www.reddit.com/r/neovim/comments/1sbrnir/comment/oejipjh/?share_id=KsEdne4uLjQkY4Y9YEWYU&utm_content=2&utm_medium=android_app&utm_name=androidcss&utm_source=share&utm_term=1
+"https://github.com/nvim-treesitter/nvim-treesitter/discussions/8546
+"if has('nvim')
+"lua << EOF
+"require'nvim-treesitter.configs'.setup {
+"  -- A list of parser names, or "all" (the five listed parsers should always be installed)
+"  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "python" },
+"
+"  -- Install parsers synchronously (only applied to `ensure_installed`)
+"  sync_install = false,
+"
+"  -- Automatically install missing parsers when entering buffer
+"  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+"  -- auto_install = true,
+"
+"  -- List of parsers to ignore installing (or "all")
+"  -- ignore_install = { "javascript" },
+"
+"  ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
+"  -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
+"
+"  highlight = {
+"    enable = true,
+"
+"    -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
+"    -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
+"    -- the name of the parser)
+"    -- list of language that will be disabled
+"    disable = { "c", "rust" },
+"    -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
+"    disable = function(lang, buf)
+"        local max_filesize = 100 * 1024 -- 100 KB
+"        local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+"        if ok and stats and stats.size > max_filesize then
+"            return true
+"        end
+"    end,
+"
+"    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+"    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+"    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+"    -- Instead of true it can also be a list of languages
+"    additional_vim_regex_highlighting = false,
+"  },
+"
+"  incremental_selection = {
+"     enable = true,
+"     keymaps = {
+"        init_selection = "<M-Up>", -- set to `false` to disable one of the mappings
+"        node_incremental = "<M-Up>",
+"        scope_incremental = "grc",
+"        node_decremental = "<M-Down>",
+"     },
+"  },
+"}
+"EOF
+"end
 
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
@@ -208,7 +240,7 @@ endif
 
 "set gfn=Consolas
 "set gfn=Monaco:h10
-set gfn=Menlo\ Regular:h11
+"set gfn=Menlo\ Regular:h11
 
 map <D-'> :maca _cycleWindows:<CR>
 
@@ -475,6 +507,7 @@ nnoremap <silent> <C-t> <cmd>Telescope find_files<CR>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <silent> <C-a> <cmd>Telescope grep_string<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <silent> <C-b> <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 """"""""""""""""""""""""
@@ -493,6 +526,33 @@ autocmd FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
 " for css or scss
 autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
 autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
+
+
+""""""""""""""""""""""""
+" import @/ support
+""""""""""""""""""""""""
+function! CobResolveImport(fname) abort
+   " Only handle the @/ alias; let vim do its normal thing otherwise.
+   if a:fname !~# '^@/'
+      return a:fname
+   endif
+   " Project root = nearest ancestor with a .git dir.
+   let l:root = fnamemodify(finddir('.git', expand('%:p:h') . ';'), ':h')
+   let l:base = l:root . '/src/' . a:fname[2:]
+   for l:s in ['', '.ts', '.js', '.vue', '.json', '/index.ts', '/index.js', '/index.vue']
+      if filereadable(l:base . l:s)
+         return l:base . l:s
+      endif
+   endfor
+   return l:base
+endfunction
+
+augroup CobUiGf
+   autocmd!
+   autocmd FileType typescript,javascript,vue,json
+            \ setlocal includeexpr=CobResolveImport(v:fname)
+            \ | setlocal isfname+=@-@
+augroup END
 
 """"""""""""""""""""""""
 " to auto-complete files relative to current file
