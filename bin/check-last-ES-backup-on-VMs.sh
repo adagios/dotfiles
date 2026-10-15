@@ -6,7 +6,8 @@ PATH="$PATH:/usr/local/bin"
 SERVERS=$(~/.bin/searcher --server dogfooding.cultofbits.com --def Máquina --query "funcionamento produção acessível:sim" --single "Nome Máquina" --size 100)
 
 echo "# Detalhes do backup ES de $(date +'%Y-%m-%d')"
-for server in $SERVERS; do
+for server_com in $SERVERS; do
+   server=${server_com/.com/.pt}
    echo "## $server"
    echo "==============="
    echo '```json'

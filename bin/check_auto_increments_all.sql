@@ -13,9 +13,9 @@ SELECT Concat(tab.table_schema, '.', tab.table_name)                   AS tabela
                ON cols.table_schema = tab.table_schema
                   AND cols.table_name = tab.table_name
                   AND cols.extra = 'auto_increment'
- WHERE ( cols.column_type LIKE 'int%'
-         AND Round(( tab.auto_increment / @max_signed_int ) * 100, 2) > 20 )
+ WHERE ( cols.column_type LIKE 'int(%)'
+         AND Round(( tab.auto_increment / @max_signed_int ) * 100, 2) > 80 )
     OR ( cols.column_type LIKE 'int%unsigned'
-         AND Round(( tab.auto_increment / @max_unsigned_int ) * 100, 2) > 20 )
-    OR Round(( tab.auto_increment / @max_unsigned_bigint ) * 100, 2) > 20
+         AND Round(( tab.auto_increment / @max_unsigned_int ) * 100, 2) > 80 )
+    OR Round(( tab.auto_increment / @max_unsigned_bigint ) * 100, 2) > 80
  ORDER BY Concat(tab.table_schema, '.', tab.table_name);

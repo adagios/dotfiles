@@ -3,7 +3,8 @@
 SERVERS=$(~/.bin/searcher --server dogfooding.cultofbits.com --def Máquina --query "funcionamento produção acessível:sim" --single "Nome Máquina" --size 100)
 
 echo "# Detalhes dos backups BD de $(date +'%Y-%m-%d')"
-for server in $SERVERS; do
+for server_com in $SERVERS; do
+   server=${server_com/.com/.pt}
    if [[ "$server" != "alfcobfe01" && "$server" != "alfcobfe02" ]]; then
       echo "## $server"
       echo "==============="
